@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26405EFD9CD614CCFF15E17E /* Pods_SaveMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */; };
 		540F04812037864C0045B5CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F04802037864C0045B5CC /* AppDelegate.swift */; };
 		540F04832037864C0045B5CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F04822037864C0045B5CC /* ViewController.swift */; };
 		540F04862037864C0045B5CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540F04842037864C0045B5CC /* Main.storyboard */; };
 		540F04882037864C0045B5CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 540F04872037864C0045B5CC /* Assets.xcassets */; };
 		540F048B2037864C0045B5CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540F04892037864C0045B5CC /* LaunchScreen.storyboard */; };
+		54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6CB203787E900E74918 /* MainViewController.swift */; };
+		54FDD6CF2037882200E74918 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6CE2037882200E74918 /* Extensions.swift */; };
+		54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,12 @@
 		540F04872037864C0045B5CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		540F048A2037864C0045B5CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		540F048C2037864C0045B5CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54FDD6CB203787E900E74918 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		54FDD6CE2037882200E74918 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		7ABBF270B07C5D551F93C724 /* Pods-SaveMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney.debug.xcconfig"; sourceTree = "<group>"; };
+		B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaveMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59BFB6CDDDC98B781FDB53F /* Pods-SaveMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26405EFD9CD614CCFF15E17E /* Pods_SaveMoney.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +51,8 @@
 			children = (
 				540F047F2037864C0045B5CC /* SaveMoney */,
 				540F047E2037864C0045B5CC /* Products */,
+				EA7E8A7F46757A2217455D42 /* Pods */,
+				D301F35D20618F46C9E657F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +68,41 @@
 			isa = PBXGroup;
 			children = (
 				540F04802037864C0045B5CC /* AppDelegate.swift */,
-				540F04822037864C0045B5CC /* ViewController.swift */,
+				54FDD6CE2037882200E74918 /* Extensions.swift */,
+				54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */,
+				54FDD6CD203787F400E74918 /* ViewController */,
 				540F04842037864C0045B5CC /* Main.storyboard */,
 				540F04872037864C0045B5CC /* Assets.xcassets */,
 				540F04892037864C0045B5CC /* LaunchScreen.storyboard */,
 				540F048C2037864C0045B5CC /* Info.plist */,
 			);
 			path = SaveMoney;
+			sourceTree = "<group>";
+		};
+		54FDD6CD203787F400E74918 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				540F04822037864C0045B5CC /* ViewController.swift */,
+				54FDD6CB203787E900E74918 /* MainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D301F35D20618F46C9E657F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA7E8A7F46757A2217455D42 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7ABBF270B07C5D551F93C724 /* Pods-SaveMoney.debug.xcconfig */,
+				B59BFB6CDDDC98B781FDB53F /* Pods-SaveMoney.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +112,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 540F048F2037864C0045B5CC /* Build configuration list for PBXNativeTarget "SaveMoney" */;
 			buildPhases = (
+				2305982350BF957D118891CE /* [CP] Check Pods Manifest.lock */,
 				540F04792037864C0045B5CC /* Sources */,
 				540F047A2037864C0045B5CC /* Frameworks */,
 				540F047B2037864C0045B5CC /* Resources */,
+				C40C2832D13581C8456599A5 /* [CP] Embed Pods Frameworks */,
+				DD2BB5C7F3DC9F27597E7DB0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,13 +176,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2305982350BF957D118891CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SaveMoney-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C40C2832D13581C8456599A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD2BB5C7F3DC9F27597E7DB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		540F04792037864C0045B5CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */,
+				54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
+				54FDD6CF2037882200E74918 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,27 +360,31 @@
 		};
 		540F04902037864C0045B5CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7ABBF270B07C5D551F93C724 /* Pods-SaveMoney.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W2H48J22L4;
 				INFOPLIST_FILE = SaveMoney/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.Semyon.SaveMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		540F04912037864C0045B5CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B59BFB6CDDDC98B781FDB53F /* Pods-SaveMoney.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = W2H48J22L4;
 				INFOPLIST_FILE = SaveMoney/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.Semyon.SaveMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -302,6 +407,7 @@
 				540F04912037864C0045B5CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
