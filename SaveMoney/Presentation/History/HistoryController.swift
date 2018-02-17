@@ -22,6 +22,8 @@ final class HistoryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupScreen()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -33,6 +35,18 @@ final class HistoryController: UIViewController {
     private let historyCellReuseId = "histCell"
     
     // MARK: - Methods
+    
+    private func setupScreen() {
+        setupContainers()
+    }
+    
+    private func setupContainers() {
+        setupHistoryContainer()
+    }
+    
+    private func setupHistoryContainer() {
+        historyTableView.tableFooterView = UIView()
+    }
 }
 
 extension HistoryController: UICollectionViewDelegateFlowLayout {
