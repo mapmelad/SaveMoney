@@ -643,8 +643,9 @@
                                             <constraint firstAttribute="bottom" secondItem="zj1-Ya-nfJ" secondAttribute="bottom" id="vMv-8o-l7N"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="adviceLabel" destination="2AP-NC-WoA" id="4NO-t4-wxs"/>
+                                            <outlet property="adviceLabel" destination="3Xn-Lw-NCc" id="SkN-Sh-0G1"/>
                                             <outlet property="cardView" destination="zj1-Ya-nfJ" id="dfz-4e-h6q"/>
+                                            <outlet property="titleAdviceLabel" destination="2AP-NC-WoA" id="Gq7-z5-9QN"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

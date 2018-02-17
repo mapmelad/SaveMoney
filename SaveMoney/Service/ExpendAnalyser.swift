@@ -10,6 +10,7 @@ import Foundation
 
 protocol IExpendAnalyser: class {
     func analyse(_ expends: [Expense]) -> (spent: Double, category: String)
+    func averagePerCategory() -> [String: Int] 
 }
 
 final class ExpendAnalyser: IExpendAnalyser {

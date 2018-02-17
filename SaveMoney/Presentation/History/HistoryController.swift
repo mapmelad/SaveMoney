@@ -11,6 +11,11 @@ import RxSwift
 import RxSwiftExt
 import UIKit
 
+struct Advice {
+    let titleAdvice: String
+    let textAdvice: String
+}
+
 final class HistoryController: UIViewController {
     // MARK: - Outlets
     
@@ -18,11 +23,14 @@ final class HistoryController: UIViewController {
     @IBOutlet var historyTableView: UITableView!
     
     // MARK: - Overrides
+    private let expendAnalyser: IExpendAnalyser = ExpendAnalyser.shared
+    var advices = [Advice]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupScreen()
+        setupAdvice()
     }
     
     override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated) }
@@ -48,6 +56,14 @@ final class HistoryController: UIViewController {
         setupContainers()
     }
     
+    private func setupAdvice(){
+        advices.removeAll()
+        let topSpent = expendAnalyser.analyse(expenseService.thisMonthSpends)
+        let topCategory = expendAnalyser.averagePerCategory()
+        advices.append(Advice(titleAdvice: "😱😱😱", textAdvice: "Мы заметили что на \(topSpent.category) ты тратишь \(topSpent.spent) % своего месячного бюджета. Попробуй сократить свой рассход."))
+        advices.append(Advice(titleAdvice: "✈️⛅️🌴", textAdvice: "Впереди майские праздники. Отличный повод начать экономить сейчас, как следует отдохнуть. Попробуй сократить свои расходы по категориям \(Array(topCategory.keys)[0]) и \(Array(topCategory.keys)[1])."))
+    }
+    
     private func observeNewSpends() { NotificationCenter.default.addObserver(self, selector: #selector(onNewSpend(_:)), name: Notification.Name("shouldReloadTable"), object: nil) }
     
     private func setupContainers() {
@@ -61,7 +77,11 @@ final class HistoryController: UIViewController {
     }
     
     @objc
-    private func onNewSpend(_ notification: Any) { historyTableView.reloadData() }
+    private func onNewSpend(_ notification: Any) {
+        setupAdvice()
+        historyTableView.reloadData()
+        adviceCollectionView.reloadData()
+    }
 }
 
 extension HistoryController: UICollectionViewDelegateFlowLayout {
@@ -76,12 +96,13 @@ extension HistoryController: UICollectionViewDelegateFlowLayout {
 extension HistoryController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return 7 }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return advices.count }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
         cell.cardView.layer.cornerRadius = 6
-        // cell.advice = "some advice - \(indexPath.row)"
+        cell.titleAdviceLabel.text = advices[indexPath.row].titleAdvice
+        cell.adviceLabel.text = advices[indexPath.row].textAdvice
         
         return cell
     }
