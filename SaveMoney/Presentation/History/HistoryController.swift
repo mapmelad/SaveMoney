@@ -75,22 +75,9 @@ extension HistoryController: UICollectionViewDataSource {
         return cell
     }
     
-    /*func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let cellWitdth = Device.width
-        let cellPading: CGFloat = 16
-     
-        var page = (scrollView.contentOffset.x - cellWitdth / 2) / (cellWitdth + cellPading) + 1
-     
-        if velocity.x > 0 { page += 1 }
-        if velocity.x < 0 { page -= 1 }
-        page = max(page, 0)
-     
-        let newOffset = page * (cellWitdth + cellPading)
-        targetContentOffset.pointee.x = newOffset
-    }*/
-    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         targetContentOffset.pointee = scrollView.contentOffset
+        
         var factor: CGFloat = 0.75
         if velocity.x < 0 {
             factor = -factor
@@ -99,23 +86,6 @@ extension HistoryController: UICollectionViewDataSource {
         
         adviceCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
-    
-    /* - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-     withVelocity:(CGPoint)velocity
-     targetContentOffset:(inout CGPoint *)targetContentOffset
-     {
-     CGFloat cellWidth = self.cellWidth;
-     CGFloat cellPadding = 9;
-     
-     NSInteger page = (scrollView.contentOffset.x - cellWidth / 2) / (cellWidth + cellPadding) + 1;
-     
-     if (velocity.x > 0) page++;
-     if (velocity.x < 0) page--;
-     page = MAX(page,0);
-     
-     CGFloat newOffset = page * (cellWidth + cellPadding);
-     targetContentOffset->x = newOffset;
-     } */
 }
 
 extension HistoryController: UITableViewDelegate {
