@@ -28,9 +28,6 @@ final class MockDataProvider: IDataProvider {
     private func mockLastYearData() -> [Expense] {
         var spends = [Expense]()
         
-        let startDate = Date()
-        let endDate = Date()
-        
         for dayIdx in 1...31 {
             let spendsCount = Int(arc4random_uniform(10)) + 1
             
@@ -43,7 +40,7 @@ final class MockDataProvider: IDataProvider {
                 
                 let hour = Int(arc4random_uniform(24 + 1))
                 let minute = Int(arc4random_uniform(60))
-                let date = Date(year: 2_017, month: 12, day: dayIdx, hour: hour, minute: minute, second: minute) // Date(year: 2017, month: 12, day: dayIdx)
+                let date = Date(year: 2_017, month: 12, day: dayIdx, hour: hour, minute: minute, second: minute)
                 
                 let expense = Expense(id: id, amount: amount, category: category, date: date)
                 

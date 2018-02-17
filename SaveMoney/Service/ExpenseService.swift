@@ -42,7 +42,7 @@ final class ExpenseService: IExpenseService {
     
     func randomizeData() { allItems = dataProvider.mockData() }
     
-    func addExpense(_ e: Expense) { allItems.append(e); postUpdateNotification() }
+    func addExpense(_ e: Expense) { allItems.insert(e, at: 0); postUpdateNotification() }
     
     func totalSpent(with spends: [Expense]) -> Int { return spends.reduce(Int(0), { $0 + $1.amount }) }
     
@@ -75,8 +75,6 @@ final class ExpenseService: IExpenseService {
             }
             return grouped + [HistorySection(item)]
         }
-        
-        displayModel.sort(by: { $0.date > $1.date })
     }
     
     private func postUpdateNotification() { NotificationCenter.default.post(name: Notification.Name("shouldReloadTable"), object: nil) }
