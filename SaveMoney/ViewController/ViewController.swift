@@ -58,6 +58,8 @@ final class ViewController: UIViewController {
     private func updateBalanceContainer() {
         updateMonthBudget()
         updateDayBudget()
+        
+        log.debug(expendAnalyser.analyse(expenseService.thisMonthSpends))
     }
     
     private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget.amountFormat) на \(expenseService.daysLeftThisMonth) дней" }
@@ -75,6 +77,8 @@ final class ViewController: UIViewController {
     private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
     private let expenseService: IExpenseService = ExpenseService.shared
+    
+    private let expendAnalyser: IExpendAnalyser = ExpendAnalyser.shared
     
     // MARK: - Setup
     

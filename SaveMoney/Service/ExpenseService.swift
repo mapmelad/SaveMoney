@@ -28,6 +28,8 @@ protocol IExpenseService: class {
     
     var leftDayBudget: Int { get }
     
+    var thisMonthSpends: [Expense] { get }
+    
     var daysInMonth: Int { get }
     
     var daysLeftThisMonth: Int { get }
@@ -65,6 +67,8 @@ final class ExpenseService: IExpenseService {
     
     var leftDayBudget: Int { return maxTodayBudget - spentThisDay }
     
+    var thisMonthSpends: [Expense] { return allItems.filter { $0.date.inCurrentMonth } }
+    
     var daysInMonth: Int { return Date.daysInThisMonth }
     
     var daysLeftThisMonth: Int { return Date.daysLeftThisMonth }
@@ -88,11 +92,7 @@ final class ExpenseService: IExpenseService {
     
     private var allItems = [Expense]() { didSet { updateDisplayModel(allItems) } }
     
-    private var spentInThisMonth: Int {
-        let thisMonthSpends = allItems.filter { $0.date.inCurrentMonth }
-        
-        return totalSpent(with: thisMonthSpends)
-    }
+    private var spentInThisMonth: Int { return totalSpent(with: thisMonthSpends) }
     
     private let dataProvider: IDataProvider = MockDataProvider([])
     
@@ -107,6 +107,8 @@ final class ExpenseService: IExpenseService {
             }
             return grouped + [HistorySection(item)]
         }
+        
+        displayModel.last!.spends.sort(by: { $0.date > $1.date })
     }
     
     private func postUpdateNotification() { NotificationCenter.default.post(name: Notification.Name("shouldReloadTable"), object: nil) }
