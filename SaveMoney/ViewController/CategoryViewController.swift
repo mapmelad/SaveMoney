@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class CategoryViewController: UIViewController {
-
+    
     @IBOutlet weak var allTimeSpentLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backButton: UIBarButtonItem!
@@ -19,23 +19,35 @@ class CategoryViewController: UIViewController {
     private let historyHeaderReuseId = "histHeader"
     private let historyCellReuseId = "histCell"
     
+    var item = Expense(id: 100500, amount: 100500, category: "123123r", date: Date())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        UINavigationBar.appearance().barTintColor = UIColor(red:0.00, green:0.80, blue:0.40, alpha:1.0)
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
-        backButton.rx.tap.next { [unowned self] _ in
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
+        setapNavBar()
+        bundBackButton()
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    private func setapNavBar(){
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.00, green:0.80, blue:0.40, alpha:1.0)
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        self.navigationItem.title = item.category
+    }
+    
+    private func bundBackButton(){
+        backButton.rx.tap.next { [unowned self] _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension CategoryViewController: UITableViewDelegate {
@@ -63,10 +75,10 @@ extension CategoryViewController: UITableViewDataSource {
         let row = indexPath.row
         let section = indexPath.section
         
-//        let item = displayModel[section].spends[row]
-//        let date = item.date
-//        let min = date.minute
-//        let humanMinute = min < 10 ? "0\(min)" : "\(min)"
+        //        let item = displayModel[section].spends[row]
+        //        let date = item.date
+        //        let min = date.minute
+        //        let humanMinute = min < 10 ? "0\(min)" : "\(min)"
         
         cell.category = "Транспорт 🤲"
         cell.date = "17 января"
