@@ -108,7 +108,7 @@ final class ExpenseService: IExpenseService {
             return grouped + [HistorySection(item)]
         }
         
-        displayModel.last!.spends.sort(by: { $0.date > $1.date })
+        displayModel[0].spends.sort(by: { $0.date > $1.date })
     }
     
     private func postUpdateNotification() { NotificationCenter.default.post(name: Notification.Name("shouldReloadTable"), object: nil) }

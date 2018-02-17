@@ -123,6 +123,7 @@ private extension ViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
                 self.spendAmountTextField.text = " ₽"
                 self.updateBalanceContainer()
+                self.collectionView.deselectItem(at: self.oldCellIndex, animated: true)
             })
         }
     }
