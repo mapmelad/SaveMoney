@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HistorySection {
+struct HistorySection {
     let header: String
     let date: Date
     var spends: [Expense]

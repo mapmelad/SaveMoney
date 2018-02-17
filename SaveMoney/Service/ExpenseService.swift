@@ -100,7 +100,7 @@ final class ExpenseService: IExpenseService {
     
     private func updateDisplayModel(_ spends: [Expense]) {
         displayModel = spends.reduce([]) { (grouped: [HistorySection], item: Expense) in
-            if let gi = grouped.first(where: { $0.header == item.header }) {
+            if var gi = grouped.first(where: { $0.header == item.header }) {
                 gi.spends.append(item)
                 
                 return grouped
