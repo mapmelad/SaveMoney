@@ -647,7 +647,7 @@
                                     <outlet property="delegate" destination="cFM-mA-f3m" id="Okz-nx-5OG"/>
                                 </connections>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="64" estimatedRowHeight="64" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="0GV-5c-9Vi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="37" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="0GV-5c-9Vi">
                                 <rect key="frame" x="0.0" y="220" width="376" height="422"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -696,16 +696,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория🙀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIG-5g-tIB">
-                                                    <rect key="frame" x="85" y="11.5" width="206" height="21"/>
+                                                    <rect key="frame" x="85" y="11.5" width="106" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Р" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNy-b3-exq">
-                                                    <rect key="frame" x="301" y="10" width="60" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="XMB-h8-FgF"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="317.5" y="10" width="43.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -713,13 +710,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="pNy-b3-exq" secondAttribute="trailing" constant="15" id="6Sg-BY-HYr"/>
-                                                <constraint firstAttribute="bottom" secondItem="pNy-b3-exq" secondAttribute="bottom" constant="12.5" id="Hc0-Fc-Kxl"/>
                                                 <constraint firstItem="3qD-6K-wRL" firstAttribute="top" secondItem="5zD-Aa-EYK" secondAttribute="topMargin" id="Jec-i9-iUW"/>
                                                 <constraint firstItem="VIG-5g-tIB" firstAttribute="top" secondItem="5zD-Aa-EYK" secondAttribute="topMargin" constant="0.5" id="L1V-9o-2SL"/>
                                                 <constraint firstItem="pNy-b3-exq" firstAttribute="top" secondItem="5zD-Aa-EYK" secondAttribute="top" constant="10" id="Nsi-Si-CSN"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="3qD-6K-wRL" secondAttribute="bottom" constant="1" id="OEP-ai-ac8"/>
                                                 <constraint firstItem="VIG-5g-tIB" firstAttribute="leading" secondItem="3qD-6K-wRL" secondAttribute="trailing" constant="10" id="bAD-Qm-nvX"/>
-                                                <constraint firstItem="pNy-b3-exq" firstAttribute="leading" secondItem="VIG-5g-tIB" secondAttribute="trailing" constant="10" id="e0v-2s-qZM"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="VIG-5g-tIB" secondAttribute="bottom" constant="0.5" id="iac-dW-hGH"/>
                                                 <constraint firstItem="3qD-6K-wRL" firstAttribute="leading" secondItem="5zD-Aa-EYK" secondAttribute="leadingMargin" id="lse-wS-Eof"/>
                                             </constraints>
@@ -732,10 +727,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="cFM-mA-f3m" id="BDV-IF-4Zd"/>
-                                    <outlet property="delegate" destination="cFM-mA-f3m" id="xt1-3p-vxd"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>

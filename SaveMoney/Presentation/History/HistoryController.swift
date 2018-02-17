@@ -48,6 +48,8 @@ final class HistoryController: UIViewController {
     }
     
     private func setupHistoryContainer() {
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
         historyTableView.tableFooterView = UIView()
     }
 }
@@ -75,7 +77,7 @@ extension HistoryController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
         cell.cardView.layer.cornerRadius = 6
-        //cell.advice = "some advice - \(indexPath.row)"
+        // cell.advice = "some advice - \(indexPath.row)"
         
         return cell
     }
@@ -95,43 +97,26 @@ extension HistoryController: UICollectionViewDataSource {
     }
 }
 
-final class Box<A> {
-    var value: A
-    init(_ val: A) {
-        value = val
+extension HistoryController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 37
     }
-}
-
-public extension Sequence {
-    func group<U: Hashable>(by key: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
-        var categories: [U: Box<[Iterator.Element]>] = [:]
-        for element in self {
-            let key = key(element)
-            if case nil = categories[key]?.value.append(element) {
-                categories[key] = Box([element])
-            }
-        }
-        var result: [U: [Iterator.Element]] = Dictionary(minimumCapacity: categories.count)
-        for (key, val) in categories {
-            result[key] = val.value
-        }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
+        cell.date = "17 февраля"
         
-        return result
+        return cell
     }
 }
 
 extension HistoryController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        let sections = datasource.group(by: { $0.header }).count
-        
-        return sections
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let month = section / 31
-        let item = datasource[section]
-        
-        return 0
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,18 +134,4 @@ extension HistoryController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 37
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
-        cell.date = "17 февраля"
-        
-        return cell
-    }
 }
