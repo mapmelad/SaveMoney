@@ -287,7 +287,7 @@
 				TargetAttributes = {
 					540F047C2037864C0045B5CC = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = W2H48J22L4;
+						DevelopmentTeam = VD97XKT54M;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -541,7 +541,7 @@
 			baseConfigurationReference = 7ABBF270B07C5D551F93C724 /* Pods-SaveMoney.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W2H48J22L4;
+				DEVELOPMENT_TEAM = VD97XKT54M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -549,7 +549,7 @@
 				INFOPLIST_FILE = SaveMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme2;
+				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -560,7 +560,7 @@
 			baseConfigurationReference = B59BFB6CDDDC98B781FDB53F /* Pods-SaveMoney.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W2H48J22L4;
+				DEVELOPMENT_TEAM = VD97XKT54M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -568,7 +568,7 @@
 				INFOPLIST_FILE = SaveMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme2;
+				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};

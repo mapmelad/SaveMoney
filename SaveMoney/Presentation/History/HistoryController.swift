@@ -65,12 +65,10 @@ extension HistoryController: UICollectionViewDelegateFlowLayout {
 
 extension HistoryController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return 7
     }
     
@@ -98,40 +96,35 @@ extension HistoryController: UICollectionViewDataSource {
 }
 
 extension HistoryController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 37
-    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 37 }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
-        cell.date = "17 февраля"
+        cell.date = dataProvider.spendHeader(for: section)
         
         return cell
     }
 }
 
 extension HistoryController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
+    func numberOfSections(in tableView: UITableView) -> Int { return dataProvider.itemCount }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return dataProvider.spendsCount(in: section) }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
         let row = indexPath.row
         let section = indexPath.section
         
-        let month = section / 31
-        let item = datasource[0] // years[0].months[month].days[section % 31].spendings[row]
+        let item = dataProvider.spends(in: section)[row]
+        let date = item.date
+        let min = date.minute
+        let humanMinute = min < 10 ? "0\(min)" : "\(min)"
         
         cell.category = item.category
-        cell.date = item.header
+        cell.date = "\(date.hour):\(humanMinute)"
         cell.amount = item.amount
         
         return cell
     }
-    
 }
