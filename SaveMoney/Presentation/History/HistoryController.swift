@@ -22,6 +22,8 @@ final class HistoryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupScreen()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -33,10 +35,23 @@ final class HistoryController: UIViewController {
     private let historyCellReuseId = "histCell"
     
     // MARK: - Methods
+    
+    private func setupScreen() {
+        setupContainers()
+    }
+    
+    private func setupContainers() {
+        setupHistoryContainer()
+    }
+    
+    private func setupHistoryContainer() {
+        historyTableView.tableFooterView = UIView()
+    }
 }
 
 extension HistoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // let size = CGSize(width: Device.width - 16 - 16, height: 128)
         let size = CGSize(width: Device.width, height: 128)
         
         return size
@@ -54,8 +69,22 @@ extension HistoryController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
+        cell.cardView.layer.cornerRadius = 6
+        cell.advice = "some advice - \(indexPath.row)"
         
         return cell
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        targetContentOffset.pointee = scrollView.contentOffset
+        
+        var factor: CGFloat = 0.75
+        if velocity.x < 0 {
+            factor = -factor
+        }
+        let indexPath = IndexPath(row: Int((scrollView.contentOffset.x / Device.width + factor)), section: 0)
+        
+        adviceCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
