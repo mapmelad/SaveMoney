@@ -307,7 +307,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0 ₽" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GPl-65-Nx3">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" ₽" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GPl-65-Nx3">
                                 <rect key="frame" x="16" y="180" width="342" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -335,15 +335,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="button1" destination="xuX-j9-QXi" id="PDK-3H-CxB"/>
-                        <outlet property="button2" destination="RBC-4f-avB" id="kpo-Br-NxF"/>
-                        <outlet property="button3" destination="1wM-Zu-6tf" id="va6-B9-7Kj"/>
-                        <outlet property="button4" destination="KYo-LZ-zga" id="yih-ig-HBL"/>
-                        <outlet property="button5" destination="Fcc-Ps-Vl8" id="tiu-Sl-NoM"/>
-                        <outlet property="button6" destination="7fP-QQ-1lF" id="fiB-Dk-Hl2"/>
-                        <outlet property="button7" destination="iUJ-gc-tsa" id="7AF-qb-OWS"/>
-                        <outlet property="button8" destination="jom-ja-2Qs" id="yAz-XK-f5X"/>
-                        <outlet property="button9" destination="G9q-zz-f3t" id="xej-ts-1jB"/>
                         <outlet property="collectionView" destination="FsZ-rY-ruB" id="Amd-mA-TWX"/>
                         <outlet property="deleteButton" destination="YRR-5U-Gaw" id="Qgl-AW-tOp"/>
                         <outlet property="spendAmountTextField" destination="GPl-65-Nx3" id="N8V-UL-PF3"/>
