@@ -25,6 +25,15 @@ final class HistoryController: UIViewController {
         setupScreen()
     }
     
+    override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated) }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        datasource = ExpenseMockDataProvider.shared.spends
+        historyTableView.reloadData()
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
     // MARK: - Members
@@ -35,12 +44,19 @@ final class HistoryController: UIViewController {
     
     private let dataProvider = ExpenseMockDataProvider.shared
     
-    private let datasource = ExpenseMockDataProvider.shared.spends
+    private var datasource = ExpenseMockDataProvider.shared.spends
     
     // MARK: - Methods
     
     private func setupScreen() {
         setupContainers()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotify(_:)), name: Notification.Name("shouldReloadTable"), object: nil)
+    }
+    
+    @objc
+    private func onNotify(_ notify: Any) {
+        historyTableView.reloadData()
     }
     
     private func setupContainers() {
@@ -84,11 +100,7 @@ extension HistoryController: UICollectionViewDataSource {
         guard historyTableView != scrollView else { return }
         
         targetContentOffset.pointee = scrollView.contentOffset
-        
-        var factor: CGFloat = 0.75
-        if velocity.x < 0 {
-            factor = -factor
-        }
+        let factor: CGFloat = velocity.x < 0 ? -0.75 : 0.75
         let indexPath = IndexPath(row: Int((scrollView.contentOffset.x / Device.width + factor)), section: 0)
         
         adviceCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -111,7 +123,14 @@ extension HistoryController: UITableViewDelegate {
 extension HistoryController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int { return dataProvider.itemCount }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return dataProvider.spendsCount(in: section) }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0 {
+            log.debug("rows - \(dataProvider.spendsCount(in: section))")
+        }
+        
+        return dataProvider.spendsCount(in: section)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)

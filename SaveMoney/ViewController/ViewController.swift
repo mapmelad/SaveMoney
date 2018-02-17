@@ -21,14 +21,13 @@ final class ViewController: UIViewController {
     
     @IBOutlet var deleteButton: UIButton!
     
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet var addButton: UIButton!
     
     @IBOutlet var monthBudgetLabel: UILabel!
     
     @IBOutlet var todayBudget: UILabel!
     
-    @IBOutlet weak var errorLabel: UILabel!
-    
+    @IBOutlet var errorLabel: UILabel!
     
     // MARK: - Overrides
     
@@ -40,9 +39,7 @@ final class ViewController: UIViewController {
         setupBindings()
     }
     
-    private func setupMockDataProvider() {
-        dataProvider.categories = categories
-    }
+    private func setupMockDataProvider() { dataProvider.categories = categories }
     
     private func setupScreen() {
         setupContainers()
@@ -50,13 +47,9 @@ final class ViewController: UIViewController {
         setupDayBudget()
     }
     
-    private func setupContainers() {
-        setupKeyboardContainer()
-    }
+    private func setupContainers() { setupKeyboardContainer() }
     
-    private func setupKeyboardContainer() {
-        spendAmountTextField.delegate = self
-    }
+    private func setupKeyboardContainer() { spendAmountTextField.delegate = self }
     
     // MARK: - Members
     
@@ -88,14 +81,14 @@ private extension ViewController {
     private func setupMonthBudget() {
         let d = Date()
         let lastDay = 30 - d.day
-        monthBudgetLabel.text = "\(dataProvider.monthLateBudget)₽ на \(lastDay) дней"
+        monthBudgetLabel.text = "\(dataProvider.leftBudget)₽ на \(lastDay) дней"
         // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget
     }
     
     private func setupDayBudget() {
         let d = Date()
         let lastDay = 30 - d.day
-        let lastMoney = dataProvider.monthLateBudget / lastDay
+        let lastMoney = dataProvider.leftBudget / lastDay
         // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget / lastDay
         todayBudget.text = "\(lastMoney)₽"
     }
@@ -110,6 +103,9 @@ private extension ViewController {
                 self.errorLabel.isHidden = false
             } else {
                 self.errorLabel.isHidden = true
+                
+                let spend = Expense(id: 7441, amount: 1337, category: "category!", date: Date())
+                self.dataProvider.addSpend(spend)
             }
         }
     }

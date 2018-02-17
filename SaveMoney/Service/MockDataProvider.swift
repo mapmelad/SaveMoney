@@ -31,7 +31,7 @@ final class ExpenseMockDataProvider {
     var categories = [String]()
     
     var monthBudget = 10_000
-    var monthLateBudget = 5_000
+    var leftBudget = 5_000
     
     // MARK: - Getters
     
@@ -39,27 +39,33 @@ final class ExpenseMockDataProvider {
     
     var todaySpends: [Expense] { return self.spends.last!.value }
     
+    func addSpend(_ spend: Expense) {
+        log.debug("before - \(self.expenses.count)")
+        self.expenses.append(spend)
+        NotificationCenter.default.post(name: Notification.Name("shouldReloadTable"), object: nil)
+        log.debug("after - \(self.expenses.count)")
+    }
+    
     func spendHeader(for day: Int) -> String { return self.spends[day].key }
     
     func spends(in day: Int) -> [Expense] { return self.spends[day].value }
     
-    func totalSpent(in day: Int) -> Int {
-        return spends(in: day).reduce(Int(0)) { p, s in
-            return p + s.amount
-        }
-    }
+    func totalSpent(in day: Int) -> Int { return self.spends(in: day).reduce(Int(0)) { $0 + $1.amount } }
     
     func spendsCount(in day: Int) -> Int { return self.spends(in: day).count }
     
     // MARK: - Private
     
-    private lazy var spends: [(key: String, value: [Expense])] = {
-        let data = mockCurrentYear()
-        let grouped = data.group(by: { $0.header })
+    private lazy var expenses: [Expense] = { mockCurrentYear() }()
+    
+    private var spends: [(key: String, value: [Expense])] {
+        let grouped = expenses.group(by: { $0.header })
         let sorted = Array(grouped.sorted(by: { $0.value[0].date < $1.value[0].date }))
         
+        log.debug("spends count - \(sorted.count)")
+        
         return sorted.reversed()
-    }()
+    }
     
     private func mockLastYearData() -> [Expense] {
         var spends = [Expense]()
@@ -79,7 +85,7 @@ final class ExpenseMockDataProvider {
                 
                 let hour = Int(arc4random_uniform(24 + 1))
                 let minute = Int(arc4random_uniform(60))
-                let date = Date(year: 2017, month: 12, day: dayIdx, hour: hour, minute: minute, second: minute) // Date(year: 2017, month: 12, day: dayIdx)
+                let date = Date(year: 2_017, month: 12, day: dayIdx, hour: hour, minute: minute, second: minute) // Date(year: 2017, month: 12, day: dayIdx)
                 
                 let expense = Expense(id: id, amount: amount, category: category, date: date)
                 
@@ -113,7 +119,7 @@ final class ExpenseMockDataProvider {
                     
                     let hour = Int(arc4random_uniform(24 + 1))
                     let minute = Int(arc4random_uniform(60))
-                    let date = Date(year: 2018, month: monthIdx, day: dayIdx, hour: hour, minute: minute, second: minute)
+                    let date = Date(year: 2_018, month: monthIdx, day: dayIdx, hour: hour, minute: minute, second: minute)
                     
                     let expense = Expense(id: id, amount: amount, category: category, date: date)
                     
