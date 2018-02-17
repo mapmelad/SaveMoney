@@ -23,6 +23,15 @@
 		B911EEC12038232400B9F845 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBC2038232400B9F845 /* RxBlocking.framework */; };
 		B911EEC22038232400B9F845 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBD2038232400B9F845 /* RxCocoa.framework */; };
 		B911EEC52038233400B9F845 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B911EEC42038233400B9F845 /* Logger.swift */; };
+		B9F1CB192038295E00BC25C5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F1CB182038295E00BC25C5 /* History.storyboard */; };
+		B9F352BC2038386600A1A53B /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352BB2038386600A1A53B /* HistoryController.swift */; };
+		B9F352BF20383A5700A1A53B /* RxSwiftExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */; };
+		B9F352C120383B1A00A1A53B /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C020383B1900A1A53B /* Reusable.swift */; };
+		B9F352C420383B8000A1A53B /* AdviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C320383B8000A1A53B /* AdviceCell.swift */; };
+		B9F352C620383BD200A1A53B /* DeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C520383BD200A1A53B /* DeviceExtension.swift */; };
+		B9F352C820383CEB00A1A53B /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C720383CEB00A1A53B /* HistoryCell.swift */; };
+		B9F352CA20383D1400A1A53B /* HistorySectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C920383D1400A1A53B /* HistorySectionHeaderCell.swift */; };
+		B9F352CC2038428600A1A53B /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352CB2038428600A1A53B /* IntExtension.swift */; };
 		B9F365B420381D2E00654984 /* SwifterSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F365B320381D2E00654984 /* SwifterSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +56,15 @@
 		B911EEBC2038232400B9F845 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		B911EEBD2038232400B9F845 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		B911EEC42038233400B9F845 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B9F1CB182038295E00BC25C5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		B9F352BB2038386600A1A53B /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
+		B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftExtension.swift; sourceTree = "<group>"; };
+		B9F352C020383B1900A1A53B /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		B9F352C320383B8000A1A53B /* AdviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdviceCell.swift; sourceTree = "<group>"; };
+		B9F352C520383BD200A1A53B /* DeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceExtension.swift; sourceTree = "<group>"; };
+		B9F352C720383CEB00A1A53B /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		B9F352C920383D1400A1A53B /* HistorySectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionHeaderCell.swift; sourceTree = "<group>"; };
+		B9F352CB2038428600A1A53B /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		B9F365B320381D2E00654984 /* SwifterSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterSwift.framework; path = Carthage/Build/iOS/SwifterSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +107,8 @@
 		540F047F2037864C0045B5CC /* SaveMoney */ = {
 			isa = PBXGroup;
 			children = (
+				B9F352BD20383A4200A1A53B /* Common */,
+				B9F1CB172038292D00BC25C5 /* Presentation */,
 				B911EEC32038232900B9F845 /* Core */,
 				540F04802037864C0045B5CC /* AppDelegate.swift */,
 				54FDD6CE2037882200E74918 /* Extensions.swift */,
@@ -118,6 +138,53 @@
 				B911EEC42038233400B9F845 /* Logger.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		B9F1CB172038292D00BC25C5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B9F1CB1A2038299400BC25C5 /* History */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B9F1CB1A2038299400BC25C5 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B9F1CB1B20382AF800BC25C5 /* View */,
+				B9F352BB2038386600A1A53B /* HistoryController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		B9F1CB1B20382AF800BC25C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B9F1CB182038295E00BC25C5 /* History.storyboard */,
+				B9F352C320383B8000A1A53B /* AdviceCell.swift */,
+				B9F352C720383CEB00A1A53B /* HistoryCell.swift */,
+				B9F352C920383D1400A1A53B /* HistorySectionHeaderCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B9F352BD20383A4200A1A53B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B9F352C220383B5B00A1A53B /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B9F352C220383B5B00A1A53B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B9F352C520383BD200A1A53B /* DeviceExtension.swift */,
+				B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */,
+				B9F352C020383B1900A1A53B /* Reusable.swift */,
+				B9F352CB2038428600A1A53B /* IntExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		D301F35D20618F46C9E657F2 /* Frameworks */ = {
@@ -209,6 +276,7 @@
 				540F048B2037864C0045B5CC /* LaunchScreen.storyboard in Resources */,
 				540F04882037864C0045B5CC /* Assets.xcassets in Resources */,
 				540F04862037864C0045B5CC /* Main.storyboard in Resources */,
+				B9F1CB192038295E00BC25C5 /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,11 +308,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwifterSwift/SwifterSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwifterSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -276,8 +346,16 @@
 				54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */,
 				B911EEC52038233400B9F845 /* Logger.swift in Sources */,
 				54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */,
+				B9F352C120383B1A00A1A53B /* Reusable.swift in Sources */,
+				B9F352CA20383D1400A1A53B /* HistorySectionHeaderCell.swift in Sources */,
+				B9F352C420383B8000A1A53B /* AdviceCell.swift in Sources */,
+				B9F352C620383BD200A1A53B /* DeviceExtension.swift in Sources */,
+				B9F352C820383CEB00A1A53B /* HistoryCell.swift in Sources */,
+				B9F352BC2038386600A1A53B /* HistoryController.swift in Sources */,
+				B9F352CC2038428600A1A53B /* IntExtension.swift in Sources */,
 				544CD48520383B7700192D32 /* SettingsViewController.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
+				B9F352BF20383A5700A1A53B /* RxSwiftExtension.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
 				54FDD6CF2037882200E74918 /* Extensions.swift in Sources */,
 			);
