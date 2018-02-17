@@ -13,6 +13,7 @@
 		540F04862037864C0045B5CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540F04842037864C0045B5CC /* Main.storyboard */; };
 		540F04882037864C0045B5CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 540F04872037864C0045B5CC /* Assets.xcassets */; };
 		540F048B2037864C0045B5CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540F04892037864C0045B5CC /* LaunchScreen.storyboard */; };
+		544CD48520383B7700192D32 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544CD48420383B7700192D32 /* SettingsViewController.swift */; };
 		54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6CB203787E900E74918 /* MainViewController.swift */; };
 		54FDD6CF2037882200E74918 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6CE2037882200E74918 /* Extensions.swift */; };
 		54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */; };
@@ -33,6 +34,7 @@
 		540F04872037864C0045B5CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		540F048A2037864C0045B5CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		540F048C2037864C0045B5CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		544CD48420383B7700192D32 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		54FDD6CB203787E900E74918 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		54FDD6CE2037882200E74918 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		54FDD6CD203787F400E74918 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				544CD48420383B7700192D32 /* SettingsViewController.swift */,
 				540F04822037864C0045B5CC /* ViewController.swift */,
 				54FDD6CB203787E900E74918 /* MainViewController.swift */,
 			);
@@ -273,6 +276,7 @@
 				54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */,
 				B911EEC52038233400B9F845 /* Logger.swift in Sources */,
 				54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */,
+				544CD48520383B7700192D32 /* SettingsViewController.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
 				54FDD6CF2037882200E74918 /* Extensions.swift in Sources */,
