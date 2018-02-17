@@ -89,6 +89,8 @@ extension HistoryController: UICollectionViewDataSource {
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard historyTableView != scrollView else { return }
+        
         targetContentOffset.pointee = scrollView.contentOffset
         
         var factor: CGFloat = 0.75
@@ -108,7 +110,7 @@ extension HistoryController: UITableViewDelegate {
 extension HistoryController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var c = 0
-        for y in self.years { for m in y.months { c += m.days.count } }
+        for y in years { for m in y.months { c += m.days.count } }
         
         return c
     }
@@ -116,7 +118,7 @@ extension HistoryController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let month = section / 31
         
-        return self.years[0].months[month].days[section % 31].spendings.count
+        return years[0].months[month].days[section % 31].spendings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -128,19 +130,23 @@ extension HistoryController: UITableViewDataSource {
         let item = years[0].months[month].days[section % 31].spendings[row]
         
         cell.category = item.cat
-        cell.date = item.comment
-        cell.amount = Int(item.amount)
+        cell.date = "17:30"
+        cell.amount = 1459
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 64
+        return 37
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
-        cell.date = "Date - \(section)"
+        cell.date = "17 февраля"
         
         return cell
     }
