@@ -64,7 +64,15 @@ final class ViewController: UIViewController {
     
     private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget.amountFormat) на \(expenseService.daysLeftThisMonth) дней" }
     
-    private func updateDayBudget() { todayBudget.text = "\(expenseService.leftDayBudget.amountFormat)" }
+    private func updateDayBudget() {
+        todayBudget.text = "\(expenseService.leftDayBudget) ₽"
+        if expenseService.leftDayBudget < 0 {
+            todayBudget.textColor = UIColor.red
+            errorLabel.text = "Новый бюджет на день: \(expenseService.leftMonthBudget / expenseService.daysLeftThisMonth) ₽"
+            errorLabel.isHidden = false
+        }
+        
+    }
     
     // MARK: Keyboard Container
     

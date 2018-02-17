@@ -109,6 +109,7 @@ extension HistoryController: UITableViewDelegate {
         
         return cell
     }
+    
 }
 
 extension HistoryController: UITableViewDataSource {
@@ -131,5 +132,20 @@ extension HistoryController: UITableViewDataSource {
         cell.amount = item.amount
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Category", bundle: nil)
+        let vc : CategoryViewController = storyboard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        let item = displayModel[section].spends[row]
+        vc.item = item
+        
+        
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
