@@ -46,8 +46,12 @@ final class ViewController: UIViewController {
     
     private func setupScreen() {
         setupContainers()
+        updateBalance()
+    }
+    
+    private func updateBalance() {
         updateMonthBudget()
-        setupDayBudget()
+        updateDayBudget()
     }
     
     private func setupContainers() { setupKeyboardContainer() }
@@ -88,7 +92,7 @@ private extension ViewController {
         // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget
     }
     
-    private func setupDayBudget() {
+    private func updateDayBudget() {
         let d = Date()
         let lastDay = 30 - d.day
         let lastMoney = expenseService.leftBudget / lastDay
@@ -119,7 +123,7 @@ private extension ViewController {
             spendAmountTextField.text = "Потрачено " + spentText
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
                 self.spendAmountTextField.text = " ₽"
-                self.updateMonthBudget()
+                self.updateBalance()
             })
         }
     }
