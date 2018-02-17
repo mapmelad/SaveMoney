@@ -216,6 +216,7 @@
 		B9F352C220383B5B00A1A53B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B9A31CBC2038BF66003B0E8B /* DateExtension.swift */,
 				B9F352C520383BD200A1A53B /* DeviceExtension.swift */,
 				B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */,
 				B9F352C020383B1900A1A53B /* Reusable.swift */,
@@ -226,7 +227,6 @@
 				B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */,
 				B91DA6FD203876410088A0F7 /* ArrayExtension.swift */,
 				B95FCA4C20387AE100EDD79C /* SequenceExtension.swift */,
-				B9A31CBC2038BF66003B0E8B /* DateExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";

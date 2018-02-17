@@ -24,7 +24,13 @@ protocol IExpenseService: class {
     
     var monthBudget: Int { get set }
     
-    var leftBudget: Int { get }
+    var leftMonthBudget: Int { get }
+    
+    var leftDayBudget: Int { get }
+    
+    var daysInMonth: Int { get }
+    
+    var daysLeftThisMonth: Int { get }
     
     var displayModel: [HistorySection] { get }
     
@@ -55,7 +61,13 @@ final class ExpenseService: IExpenseService {
     
     var monthBudget = 10_000
     
-    var leftBudget: Int { return monthBudget - spentInThisMonth }
+    var leftMonthBudget: Int { return monthBudget - spentInThisMonth }
+    
+    var leftDayBudget: Int { return maxTodayBudget - spentThisDay }
+    
+    var daysInMonth: Int { return Date.daysInThisMonth }
+    
+    var daysLeftThisMonth: Int { return Date.daysLeftThisMonth }
     
     var displayModel = [HistorySection]()
     
@@ -63,13 +75,23 @@ final class ExpenseService: IExpenseService {
     
     // MARK: - Private
     
+    private var maxTodayBudget: Int { return spentThisMonthBeforeToday / daysLeftThisMonth }
+    
+    private var spentThisMonthBeforeToday: Int { return spentInThisMonth - spentThisDay }
+    
+    private var spentThisDay: Int {
+        let thisMonthSpends = allItems.filter { $0.date.monthIn(Date.today) }
+        let thisDay = thisMonthSpends.filter { $0.date.inCurrentDay }
+        
+        return totalSpent(with: thisDay)
+    }
+    
     private let dataProvider: IDataProvider = MockDataProvider([])
     
     private var allItems = [Expense]() { didSet { updateDisplayModel(allItems) } }
     
     private var spentInThisMonth: Int {
-        let today = Date()
-        let thisMonthSpends = allItems.filter { $0.date.monthIn(today) }
+        let thisMonthSpends = allItems.filter { $0.date.inCurrentMonth }
         
         return totalSpent(with: thisMonthSpends)
     }

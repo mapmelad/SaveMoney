@@ -68,7 +68,7 @@ final class MockDataProvider: IDataProvider {
                 if monthIdx > 2 { break }
                 if monthIdx == 2 { if dayIdx > Date().day { break } }
                 
-                let spendsCount = Int(arc4random_uniform(10)) + 1
+                let spendsCount = Int(arc4random_uniform(3)) + 1
                 
                 var localSpends = [Expense]()
                 

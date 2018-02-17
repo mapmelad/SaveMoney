@@ -46,15 +46,25 @@ final class ViewController: UIViewController {
     
     private func setupScreen() {
         setupContainers()
-        updateBalance()
     }
     
-    private func updateBalance() {
+    private func setupContainers() {
+        updateBalanceContainer()
+        setupKeyboardContainer()
+    }
+    
+    // MARK: Balance Container
+    
+    private func updateBalanceContainer() {
         updateMonthBudget()
         updateDayBudget()
     }
     
-    private func setupContainers() { setupKeyboardContainer() }
+    private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget) ₽ на \(expenseService.daysLeftThisMonth) дней" }
+    
+    private func updateDayBudget() { todayBudget.text = "\(expenseService.leftDayBudget) ₽" }
+    
+    // MARK: Keyboard Container
     
     private func setupKeyboardContainer() { spendAmountTextField.delegate = self }
     
@@ -85,21 +95,6 @@ private extension ViewController {
     
     private func bindMoneyLeft() {}
     
-    private func updateMonthBudget() {
-        let d = Date()
-        let lastDay = 30 - d.day
-        monthBudgetLabel.text = "\(expenseService.leftBudget)₽ на \(lastDay) дней"
-        // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget
-    }
-    
-    private func updateDayBudget() {
-        let d = Date()
-        let lastDay = 30 - d.day
-        let lastMoney = expenseService.leftBudget / lastDay
-        // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget / lastDay
-        todayBudget.text = "\(lastMoney)₽"
-    }
-    
     private func bindAddButton() {
         addButton.rx.tap.next { [unowned self] in
             if self.oldCellIndex.row == -1 {
@@ -123,7 +118,7 @@ private extension ViewController {
             spendAmountTextField.text = "Потрачено " + spentText
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
                 self.spendAmountTextField.text = " ₽"
-                self.updateBalance()
+                self.updateBalanceContainer()
             })
         }
     }
