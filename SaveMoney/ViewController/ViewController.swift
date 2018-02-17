@@ -37,11 +37,12 @@ final class ViewController: UIViewController {
         setupMockDataProvider()
         setupScreen()
         setupBindings()
-        
-        dataProvider.mockData()
     }
     
-    private func setupMockDataProvider() { dataProvider.categories = categories }
+    private func setupMockDataProvider() {
+        expenseService.categories = categories
+        expenseService.randomizeData()
+    }
     
     private func setupScreen() {
         setupContainers()
@@ -61,7 +62,7 @@ final class ViewController: UIViewController {
     
     private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
-    private let dataProvider = ExpenseMockDataProvider.shared
+    private let expenseService: IExpenseService = ExpenseService.shared
     
     // MARK: - Setup
     
@@ -83,14 +84,14 @@ private extension ViewController {
     private func setupMonthBudget() {
         let d = Date()
         let lastDay = 30 - d.day
-        monthBudgetLabel.text = "\(dataProvider.leftBudget)₽ на \(lastDay) дней"
+        monthBudgetLabel.text = "\(expenseService.leftBudget)₽ на \(lastDay) дней"
         // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget
     }
     
     private func setupDayBudget() {
         let d = Date()
         let lastDay = 30 - d.day
-        let lastMoney = dataProvider.leftBudget / lastDay
+        let lastMoney = expenseService.leftBudget / lastDay
         // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget / lastDay
         todayBudget.text = "\(lastMoney)₽"
     }
@@ -107,7 +108,7 @@ private extension ViewController {
                 self.errorLabel.isHidden = true
                 
                 let spend = Expense(id: 7441, amount: 1337, category: "category!", date: Date())
-                self.dataProvider.addSpend(spend)
+                self.expenseService.addExpense(spend)
             }
         }
     }

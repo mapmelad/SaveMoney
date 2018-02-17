@@ -6,86 +6,24 @@
 //  Copyright © 2018 Semyon. All rights reserved.
 //
 
-import Timepiece
 import UIKit
 
-struct Expense {
-    let id: Int
+protocol IDataProvider: class {
+    func mockData() -> [Expense]
     
-    let amount: Int
-    let category: String
-    let date: Date
-    
-    var header: String {
-        let humanMonth = getRussianMonth(self.date.month)
-        
-        return "\(self.date.day) \(humanMonth)"
-    }
+    var categories: [String] { get set }
 }
 
-final class HistorySection {
-    let date: String
-    var spends: [Expense]
+final class MockDataProvider: IDataProvider {
+    init(_ cats: [String]) { categories = cats }
     
-    init(_ expense: Expense) {
-        self.date = expense.header
-        self.spends = [expense]
-    }
-}
-
-final class ExpenseMockDataProvider {
-    static let shared = ExpenseMockDataProvider()
+    // MARK: - IDataProvider
     
-    // MARK: - Members
+    func mockData() -> [Expense] { return mockCurrentYear() }
     
-    var categories = [String]()
-    
-    var monthBudget = 10_000
-    var leftBudget = 5_000
-    
-    // MARK: - Getters
-    
-    var itemCount: Int { return self.spends.count }
-    
-    var todaySpends: [Expense] { return self.spends.last!.value }
-    
-    func addSpend(_ spend: Expense) {
-        self.expenses.append(spend)
-        NotificationCenter.default.post(name: Notification.Name("shouldReloadTable"), object: nil)
-    }
-    
-    func spendHeader(for day: Int) -> String { return self.spends[day].key }
-    
-    func spends(in day: Int) -> [Expense] { return self.spends[day].value }
-    
-    func totalSpent(in day: Int) -> Int { return self.spends(in: day).reduce(Int(0)) { $0 + $1.amount } }
-    
-    func spendsCount(in day: Int) -> Int { return self.spends(in: day).count }
+    var categories: [String]
     
     // MARK: - Private
-    
-    var itemsToDisplay = [HistorySection]()
-    
-    func mockData() {
-        let data = mockCurrentYear()
-        itemsToDisplay = data.reduce([]) { (grouped: [HistorySection], item: Expense) in
-            if let gi = grouped.first(where: { $0.date == item.header }) {
-                gi.spends.append(item)
-                
-                return grouped
-            }
-            return grouped + [HistorySection(item)]
-        }
-    }
-    
-    private lazy var expenses: [Expense] = { mockCurrentYear() }()
-    
-    private var spends: [(key: String, value: [Expense])] {
-        let grouped = expenses.group(by: { $0.header })
-        let sorted = Array(grouped.sorted(by: { $0.value[0].date < $1.value[0].date }))
-        
-        return sorted.reversed()
-    }
     
     private func mockLastYearData() -> [Expense] {
         var spends = [Expense]()
@@ -120,7 +58,6 @@ final class ExpenseMockDataProvider {
     
     private func mockCurrentYear() -> [Expense] {
         var spends = mockLastYearData()
-        // var spends = [Expense]()
         
         for monthIdx in 1...2 {
             for dayIdx in 1...31 {

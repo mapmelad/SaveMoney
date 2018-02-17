@@ -37,22 +37,18 @@ final class HistoryController: UIViewController {
     
     private let historyCellReuseId = "histCell"
     
-    private let dataProvider = ExpenseMockDataProvider.shared
+    private let expenseService: IExpenseService = ExpenseService.shared
     
-    private var datasource: [HistorySection] { return ExpenseMockDataProvider.shared.itemsToDisplay }
+    private var displayModel: [HistorySection] { return expenseService.displayModel }
     
     // MARK: - Methods
     
     private func setupScreen() {
+        observeNewSpends()
         setupContainers()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotify(_:)), name: Notification.Name("shouldReloadTable"), object: nil)
     }
     
-    @objc
-    private func onNotify(_ notify: Any) {
-        historyTableView.reloadData()
-    }
+    private func observeNewSpends() { NotificationCenter.default.addObserver(self, selector: #selector(onNewSpend(_:)), name: Notification.Name("shouldReloadTable"), object: nil) }
     
     private func setupContainers() {
         setupHistoryContainer()
@@ -63,6 +59,9 @@ final class HistoryController: UIViewController {
         historyTableView.dataSource = self
         historyTableView.tableFooterView = UIView()
     }
+    
+    @objc
+    private func onNewSpend(_ notification: Any) { historyTableView.reloadData() }
 }
 
 extension HistoryController: UICollectionViewDelegateFlowLayout {
@@ -103,25 +102,26 @@ extension HistoryController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
+        let section = displayModel[section]
         
-        cell.date = datasource[section].date
-        cell.totalSpent = dataProvider.totalSpent(in: section)
+        cell.date = section.header
+        cell.totalSpent = expenseService.totalSpent(with: section.spends)
         
         return cell
     }
 }
 
 extension HistoryController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int { return datasource.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return displayModel.count }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return datasource[section].spends.count }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return displayModel[section].spends.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
         let row = indexPath.row
         let section = indexPath.section
         
-        let item = datasource[section].spends[row]
+        let item = displayModel[section].spends[row]
         let date = item.date
         let min = date.minute
         let humanMinute = min < 10 ? "0\(min)" : "\(min)"

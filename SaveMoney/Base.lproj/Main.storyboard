@@ -616,8 +616,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В предыдущем месяце ты потратил 3500₽ на бары. Это 30% твоего бюджета. Попробуй сократить бюджет на бары, и пить дома! " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xn-Lw-NCc">
-                                                            <rect key="frame" x="16" y="56" width="313" height="76.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В предыдущем месяце ты потратил  3500 ₽ на бары. Это 30% твоего бюджета. Попробуй сократить бюджет на бары, и пить дома! " lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xn-Lw-NCc">
+                                                            <rect key="frame" x="16" y="56" width="311" height="76.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -628,7 +628,8 @@
                                                         <constraint firstAttribute="trailing" secondItem="2AP-NC-WoA" secondAttribute="trailing" constant="8" id="8Nt-GJ-idd"/>
                                                         <constraint firstItem="2AP-NC-WoA" firstAttribute="leading" secondItem="zj1-Ya-nfJ" secondAttribute="leading" constant="16" id="AJD-w1-xX1"/>
                                                         <constraint firstItem="3Xn-Lw-NCc" firstAttribute="top" secondItem="2AP-NC-WoA" secondAttribute="bottom" constant="8" id="Jtx-5Q-bly"/>
-                                                        <constraint firstAttribute="trailing" secondItem="3Xn-Lw-NCc" secondAttribute="trailing" constant="14" id="RN0-ci-ZMx"/>
+                                                        <constraint firstAttribute="trailing" secondItem="3Xn-Lw-NCc" secondAttribute="trailing" constant="16" id="RN0-ci-ZMx"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3Xn-Lw-NCc" secondAttribute="bottom" constant="16" id="X77-gT-2WF"/>
                                                         <constraint firstItem="3Xn-Lw-NCc" firstAttribute="leading" secondItem="zj1-Ya-nfJ" secondAttribute="leading" constant="16" id="o4P-P8-wFb"/>
                                                         <constraint firstItem="2AP-NC-WoA" firstAttribute="top" secondItem="zj1-Ya-nfJ" secondAttribute="top" constant="16" id="tF3-Su-dUv"/>
                                                     </constraints>
