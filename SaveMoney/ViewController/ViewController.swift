@@ -53,7 +53,7 @@ final class ViewController: UIViewController {
     private func updateTipsTextField(_ currentText: String) {}
 }
 
-extension ViewController {
+private extension ViewController {
     private func setupBindings() {
         bindTipsAmount()
         bindKeyboardTaps()
