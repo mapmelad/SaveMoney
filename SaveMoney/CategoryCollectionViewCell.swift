@@ -11,4 +11,5 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var title: UILabel!
+    @IBOutlet weak var bgView: UIView!
 }

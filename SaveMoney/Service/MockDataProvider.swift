@@ -29,6 +29,7 @@ final class ExpenseMockDataProvider {
     var categories = [String]()
     
     var monthBudget = 10_000
+    var monthLateBudget = 5_000
     
     lazy var spends: [Expense] = { mockData() }()
     

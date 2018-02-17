@@ -50,7 +50,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.13333333333333333" green="0.13502694666385651" blue="0.13502694666385651" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="Yh8-fm-uIj" firstAttribute="centerY" secondItem="PUs-zm-pER" secondAttribute="centerY" id="2AK-Mb-H38"/>
                                                         <constraint firstAttribute="trailing" secondItem="Yh8-fm-uIj" secondAttribute="trailing" constant="4" id="cg8-cD-Daf"/>
@@ -72,6 +72,7 @@
                                             <constraint firstItem="PUs-zm-pER" firstAttribute="top" secondItem="Wd2-SM-cWK" secondAttribute="top" id="pXp-Ja-7vu"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="bgView" destination="PUs-zm-pER" id="CWx-Wb-TYs"/>
                                             <outlet property="title" destination="Yh8-fm-uIj" id="Nbg-93-Yu2"/>
                                         </connections>
                                     </collectionViewCell>
@@ -314,7 +315,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❗️Пожалуйста, выберите категорию❗️" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLi-Kg-DT8">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="❗️Пожалуйста, выберите категорию❗️" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLi-Kg-DT8">
                                 <rect key="frame" x="16" y="158" width="342" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -335,9 +336,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="Rjs-5f-Rxh" id="eme-aA-83w"/>
                         <outlet property="collectionView" destination="FsZ-rY-ruB" id="Amd-mA-TWX"/>
                         <outlet property="deleteButton" destination="YRR-5U-Gaw" id="Qgl-AW-tOp"/>
+                        <outlet property="errorLabel" destination="yLi-Kg-DT8" id="cFM-7G-zdz"/>
+                        <outlet property="monthBudgetLabel" destination="rd7-7e-NAt" id="rPw-ER-4t7"/>
                         <outlet property="spendAmountTextField" destination="GPl-65-Nx3" id="N8V-UL-PF3"/>
+                        <outlet property="todayBudget" destination="UnG-8n-QWz" id="u6U-NN-CIs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -397,7 +402,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZvZ-ii-WJq">
                                                 <rect key="frame" x="749.5" y="0.0" width="375.5" height="642"/>
                                                 <subviews>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-ik-svm">
+                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-ik-svm">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="642"/>
                                                         <connections>
                                                             <segue destination="h8q-rT-37e" kind="embed" id="6BH-dN-aKK"/>

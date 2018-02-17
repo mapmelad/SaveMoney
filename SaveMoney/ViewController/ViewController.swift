@@ -21,6 +21,15 @@ final class ViewController: UIViewController {
     
     @IBOutlet var deleteButton: UIButton!
     
+    @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet var monthBudgetLabel: UILabel!
+    
+    @IBOutlet var todayBudget: UILabel!
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    
+    
     // MARK: - Overrides
     
     override func viewDidLoad() {
@@ -37,6 +46,8 @@ final class ViewController: UIViewController {
     
     private func setupScreen() {
         setupContainers()
+        setupMonthBudget()
+        setupDayBudget()
     }
     
     private func setupContainers() {
@@ -48,6 +59,10 @@ final class ViewController: UIViewController {
     }
     
     // MARK: - Members
+    
+    var oldCellIndex = IndexPath(row: -1, section: -1)
+    
+    var selectedCellIndex = IndexPath(row: -1, section: -1)
     
     private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
@@ -67,6 +82,36 @@ private extension ViewController {
         bindTipsAmount()
         bindKeyboardTaps()
         bindKeyboardDelete()
+        bindAddButton()
+    }
+    
+    private func setupMonthBudget() {
+        let d = Date()
+        let lastDay = 30 - d.day
+        monthBudgetLabel.text = "\(dataProvider.monthLateBudget)₽ на \(lastDay) дней"
+        // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget
+    }
+    
+    private func setupDayBudget() {
+        let d = Date()
+        let lastDay = 30 - d.day
+        let lastMoney = dataProvider.monthLateBudget / lastDay
+        // Посчитать все сегодняшние расходы и вычесть из dataProvider.monthLateBudget / lastDay
+        todayBudget.text = "\(lastMoney)₽"
+    }
+    
+    private func todaySpends() {
+        
+    }
+    
+    private func bindAddButton() {
+        addButton.rx.tap.next { [unowned self] in
+            if self.oldCellIndex.row == -1 {
+                self.errorLabel.isHidden = false
+            } else {
+                self.errorLabel.isHidden = true
+            }
+        }
     }
     
     private func bindTipsAmount() {
@@ -115,8 +160,35 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
         
+        if indexPath == oldCellIndex {
+            cell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
+        } else {
+            cell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+        }
+        
         cell.title.text = categories[indexPath.row]
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell {
+            selectedCell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
+            
+            if let oldCell = collectionView.cellForItem(at: oldCellIndex) as? CategoryCollectionViewCell {
+                oldCell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+            }
+            
+            oldCellIndex = indexPath
+        }
+        
+        /* let oldCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: IndexPath(row:cellIndex, section: 0))
+         let newCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
+         
+         oldCell.bgView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+         newCell.bgView.backgroundColor = UIColor(red:0.98, green:0.51, blue:0.12, alpha:1.0)
+         print(cellIndex, indexPath.row)
+         cellIndex = indexPath.row */
+        
     }
 }
