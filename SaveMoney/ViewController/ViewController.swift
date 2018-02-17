@@ -68,7 +68,7 @@ final class ViewController: UIViewController {
         todayBudget.text = "\(expenseService.leftDayBudget) ₽"
         if expenseService.leftDayBudget < 0 {
             todayBudget.textColor = UIColor.red
-            errorLabel.text = "Новый бюджет на день: \(expenseService.leftMonthBudget/expenseService.daysLeftThisMonth) ₽"
+            errorLabel.text = "Новый бюджет на день: \(expenseService.leftMonthBudget / expenseService.daysLeftThisMonth) ₽"
             errorLabel.isHidden = false
         }
         
