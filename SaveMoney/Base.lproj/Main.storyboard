@@ -670,7 +670,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего: 150 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzb-Ml-UkB">
-                                                    <rect key="frame" x="265" y="7" width="103" height="21"/>
+                                                    <rect key="frame" x="258" y="7" width="103" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
@@ -681,7 +681,7 @@
                                                 <constraint firstItem="kzb-Ml-UkB" firstAttribute="centerY" secondItem="XtC-uM-518" secondAttribute="centerY" id="GD1-2d-qPF"/>
                                                 <constraint firstItem="XtC-uM-518" firstAttribute="leading" secondItem="ySL-BR-rPn" secondAttribute="leading" constant="15" id="PuD-t0-Kg2"/>
                                                 <constraint firstItem="XtC-uM-518" firstAttribute="top" secondItem="ySL-BR-rPn" secondAttribute="top" constant="7" id="Quw-J1-Sr9"/>
-                                                <constraint firstAttribute="trailing" secondItem="kzb-Ml-UkB" secondAttribute="trailing" constant="8" id="ZVP-Nt-UrR"/>
+                                                <constraint firstAttribute="trailing" secondItem="kzb-Ml-UkB" secondAttribute="trailing" constant="15" id="ZVP-Nt-UrR"/>
                                                 <constraint firstAttribute="bottom" secondItem="XtC-uM-518" secondAttribute="bottom" constant="8.5" id="x5k-Zc-n5H"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -714,8 +714,8 @@
                                                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Р" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNy-b3-exq">
-                                                    <rect key="frame" x="317.5" y="10" width="43.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 ₽" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNy-b3-exq">
+                                                    <rect key="frame" x="317" y="10" width="44" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
