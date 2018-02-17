@@ -86,8 +86,6 @@ final class ExpenseService: IExpenseService {
         return totalSpent(with: thisDay)
     }
     
-    private let dataProvider: IDataProvider = MockDataProvider([])
-    
     private var allItems = [Expense]() { didSet { updateDisplayModel(allItems) } }
     
     private var spentInThisMonth: Int {
@@ -96,11 +94,13 @@ final class ExpenseService: IExpenseService {
         return totalSpent(with: thisMonthSpends)
     }
     
+    private let dataProvider: IDataProvider = MockDataProvider([])
+    
     // MARK: - Methods
     
     private func updateDisplayModel(_ spends: [Expense]) {
         displayModel = spends.reduce([]) { (grouped: [HistorySection], item: Expense) in
-            if var gi = grouped.first(where: { $0.header == item.header }) {
+            if let gi = grouped.first(where: { $0.header == item.header }) {
                 gi.spends.append(item)
                 
                 return grouped

@@ -60,9 +60,9 @@ final class ViewController: UIViewController {
         updateDayBudget()
     }
     
-    private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget) ₽ на \(expenseService.daysLeftThisMonth) дней" }
+    private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget.amountFormat) на \(expenseService.daysLeftThisMonth) дней" }
     
-    private func updateDayBudget() { todayBudget.text = "\(expenseService.leftDayBudget) ₽" }
+    private func updateDayBudget() { todayBudget.text = "\(expenseService.leftDayBudget.amountFormat)" }
     
     // MARK: Keyboard Container
     

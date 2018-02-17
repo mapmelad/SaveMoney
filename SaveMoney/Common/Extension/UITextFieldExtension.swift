@@ -42,6 +42,8 @@ extension UITextField {
             let tidx = text!.index(text!.endIndex, offsetBy: -2)
             self.text?.insert(Character(char), at: tidx)
         }
+        
+        if let a = self.text?.amount { self.text = a.amountFormat }
         self.moveCaret()
     }
     
@@ -50,6 +52,7 @@ extension UITextField {
         
         let idx = text.index(text.endIndex, offsetBy: -3)
         self.text?.remove(at: idx)
+        if let a = self.text?.amount { self.text = a.amountFormat }
     }
     
     func appendRubleSymbol() {
