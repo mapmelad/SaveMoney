@@ -26,8 +26,13 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupMockDataProvider()
         setupScreen()
         setupBindings()
+    }
+    
+    private func setupMockDataProvider() {
+        dataProvider.categories = categories
     }
     
     private func setupScreen() {
@@ -44,7 +49,9 @@ final class ViewController: UIViewController {
     
     // MARK: - Members
     
-    private let category = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
+    private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
+    
+    private let dataProvider = ExpenseMockDataProvider.shared
     
     // MARK: - Setup
     
@@ -89,7 +96,6 @@ private extension ViewController {
         }
     }
     
-   
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -99,17 +105,17 @@ extension ViewController: UITextFieldDelegate {
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: category[indexPath.row].size(OfFont: UIFont.systemFont(ofSize: 17.0)).width + 15.0, height: 30)
+        return CGSize(width: categories[indexPath.row].size(OfFont: UIFont.systemFont(ofSize: 17.0)).width + 15.0, height: 30)
     }
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return category.count }
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return categories.count }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
         
-        cell.title.text = category[indexPath.row]
+        cell.title.text = categories[indexPath.row]
         
         return cell
     }

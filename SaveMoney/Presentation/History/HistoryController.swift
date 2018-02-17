@@ -17,24 +17,12 @@ final class HistoryController: UIViewController {
     @IBOutlet var adviceCollectionView: UICollectionView!
     @IBOutlet var historyTableView: UITableView!
     
-    let years = mockYears()
-    
     // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupScreen()
-        
-        let year = mockYears().first!
-        
-        for m in year.months {
-            for d in m.days {
-                for s in d.spendings {
-                    log.debug("did spend \(s.amount) in \(s.cat) at \(d.day) - \(m.mon) - \(year.year)")
-                }
-            }
-        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -44,6 +32,10 @@ final class HistoryController: UIViewController {
     private let historyHeaderReuseId = "histHeader"
     
     private let historyCellReuseId = "histCell"
+    
+    private let dataProvider = ExpenseMockDataProvider.shared
+    
+    private let datasource = ExpenseMockDataProvider.shared.spends
     
     // MARK: - Methods
     
@@ -56,6 +48,8 @@ final class HistoryController: UIViewController {
     }
     
     private func setupHistoryContainer() {
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
         historyTableView.tableFooterView = UIView()
     }
 }
@@ -83,7 +77,7 @@ extension HistoryController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
         cell.cardView.layer.cornerRadius = 6
-        //cell.advice = "some advice - \(indexPath.row)"
+        // cell.advice = "some advice - \(indexPath.row)"
         
         return cell
     }
@@ -104,44 +98,8 @@ extension HistoryController: UICollectionViewDataSource {
 }
 
 extension HistoryController: UITableViewDelegate {
-    
-}
-
-extension HistoryController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        var c = 0
-        for y in years { for m in y.months { c += m.days.count } }
-        
-        return c
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let month = section / 31
-        
-        return years[0].months[month].days[section % 31].spendings.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
-        let row = indexPath.row
-        let section = indexPath.section
-        
-        let month = section / 31
-        let item = years[0].months[month].days[section % 31].spendings[row]
-        
-        cell.category = item.cat
-        cell.date = "17:30"
-        cell.amount = 1459
-        
-        return cell
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 37
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -150,4 +108,30 @@ extension HistoryController: UITableViewDataSource {
         
         return cell
     }
+}
+
+extension HistoryController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
+        let row = indexPath.row
+        let section = indexPath.section
+        
+        let month = section / 31
+        let item = datasource[0] // years[0].months[month].days[section % 31].spendings[row]
+        
+        cell.category = item.category
+        cell.date = item.header
+        cell.amount = item.amount
+        
+        return cell
+    }
+    
 }

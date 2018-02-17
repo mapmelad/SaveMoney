@@ -8,6 +8,13 @@
 
 import Foundation
 
+final class Box<A> {
+    var value: A
+    init(_ val: A) {
+        value = val
+    }
+}
+
 func getRussianMonth(_ indexMonth: Int) -> String {
     let sDict: [Int: String] = [
         1: "Января",
@@ -23,7 +30,7 @@ func getRussianMonth(_ indexMonth: Int) -> String {
         11: "Ноября",
         12: "Декабря"
     ]
-    
+
     return sDict[indexMonth] ?? ""
 }
 
