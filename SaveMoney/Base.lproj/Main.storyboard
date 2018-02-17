@@ -664,7 +664,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.11.2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtC-uM-518">
-                                                    <rect key="frame" x="15" y="7" width="346" height="21"/>
+                                                    <rect key="frame" x="15" y="7" width="84.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Всего: 150 ₽" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzb-Ml-UkB">
+                                                    <rect key="frame" x="265" y="7" width="103" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
@@ -672,15 +678,17 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="XtC-uM-518" secondAttribute="trailing" constant="15" id="CTD-tP-qn1"/>
+                                                <constraint firstItem="kzb-Ml-UkB" firstAttribute="centerY" secondItem="XtC-uM-518" secondAttribute="centerY" id="GD1-2d-qPF"/>
                                                 <constraint firstItem="XtC-uM-518" firstAttribute="leading" secondItem="ySL-BR-rPn" secondAttribute="leading" constant="15" id="PuD-t0-Kg2"/>
                                                 <constraint firstItem="XtC-uM-518" firstAttribute="top" secondItem="ySL-BR-rPn" secondAttribute="top" constant="7" id="Quw-J1-Sr9"/>
+                                                <constraint firstAttribute="trailing" secondItem="kzb-Ml-UkB" secondAttribute="trailing" constant="8" id="ZVP-Nt-UrR"/>
                                                 <constraint firstAttribute="bottom" secondItem="XtC-uM-518" secondAttribute="bottom" constant="8.5" id="x5k-Zc-n5H"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.12837114729999999" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="XtC-uM-518" id="COx-Wo-H8F"/>
+                                            <outlet property="totalSpentLabel" destination="kzb-Ml-UkB" id="ak6-pT-jpV"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryCell" rowHeight="44" id="5UD-za-zsT" customClass="HistoryCell" customModule="SaveMoney" customModuleProvider="target">

@@ -43,6 +43,12 @@ final class ExpenseMockDataProvider {
     
     func spends(in day: Int) -> [Expense] { return self.spends[day].value }
     
+    func totalSpent(in day: Int) -> Int {
+        return spends(in: day).reduce(Int(0)) { p, s in
+            return p + s.amount
+        }
+    }
+    
     func spendsCount(in day: Int) -> Int { return self.spends(in: day).count }
     
     // MARK: - Private

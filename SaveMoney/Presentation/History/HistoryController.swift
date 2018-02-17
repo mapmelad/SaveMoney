@@ -100,7 +100,9 @@ extension HistoryController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
+        
         cell.date = dataProvider.spendHeader(for: section)
+        cell.totalSpent = dataProvider.totalSpent(in: section)
         
         return cell
     }
