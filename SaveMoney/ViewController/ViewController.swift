@@ -120,10 +120,12 @@ private extension ViewController {
             expenseService.addExpense(spend)
             
             spendAmountTextField.text = "Потрачено " + spentText
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
                 self.spendAmountTextField.text = " ₽"
                 self.updateBalanceContainer()
-                self.collectionView.deselectItem(at: self.oldCellIndex, animated: true)
+                self.deselectCell(at: self.oldCellIndex)
+                self.oldCellIndex = IndexPath(row: -1, section: -1)
             })
         }
     }
@@ -170,6 +172,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     public func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return categories.count }
+    
+    private func selectCell(at indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: oldCellIndex) as! CategoryCollectionViewCell
+        cell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
+    }
+    
+    private func deselectCell(at indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: oldCellIndex) as! CategoryCollectionViewCell
+        cell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+    }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)

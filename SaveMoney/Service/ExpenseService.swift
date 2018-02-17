@@ -28,6 +28,8 @@ protocol IExpenseService: class {
     
     var leftDayBudget: Int { get }
     
+    var allItems: [Expense] { get }
+    
     var thisMonthSpends: [Expense] { get }
     
     var daysInMonth: Int { get }
@@ -67,6 +69,8 @@ final class ExpenseService: IExpenseService {
     
     var leftDayBudget: Int { return maxTodayBudget - spentThisDay }
     
+    var allItems = [Expense]() { didSet { updateDisplayModel(allItems) } }
+    
     var thisMonthSpends: [Expense] { return allItems.filter { $0.date.inCurrentMonth } }
     
     var daysInMonth: Int { return Date.daysInThisMonth }
@@ -89,8 +93,6 @@ final class ExpenseService: IExpenseService {
         
         return totalSpent(with: thisDay)
     }
-    
-    private var allItems = [Expense]() { didSet { updateDisplayModel(allItems) } }
     
     private var spentInThisMonth: Int { return totalSpent(with: thisMonthSpends) }
     
