@@ -46,7 +46,7 @@ final class ViewController: UIViewController {
     
     private func setupScreen() {
         setupContainers()
-        setupMonthBudget()
+        updateMonthBudget()
         setupDayBudget()
     }
     
@@ -57,8 +57,6 @@ final class ViewController: UIViewController {
     // MARK: - Members
     
     var oldCellIndex = IndexPath(row: -1, section: -1)
-    
-    var selectedCellIndex = IndexPath(row: -1, section: -1)
     
     private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
@@ -81,7 +79,9 @@ private extension ViewController {
         bindAddButton()
     }
     
-    private func setupMonthBudget() {
+    private func bindMoneyLeft() {}
+    
+    private func updateMonthBudget() {
         let d = Date()
         let lastDay = 30 - d.day
         monthBudgetLabel.text = "\(expenseService.leftBudget)₽ на \(lastDay) дней"
@@ -96,20 +96,31 @@ private extension ViewController {
         todayBudget.text = "\(lastMoney)₽"
     }
     
-    private func todaySpends() {
-        
-    }
-    
     private func bindAddButton() {
         addButton.rx.tap.next { [unowned self] in
             if self.oldCellIndex.row == -1 {
                 self.errorLabel.isHidden = false
             } else {
                 self.errorLabel.isHidden = true
-                
-                let spend = Expense(id: 7441, amount: 1337, category: "category!", date: Date())
-                self.expenseService.addExpense(spend)
+                self.addExpense()
             }
+        }
+    }
+    
+    private func addExpense() {
+        if let cell = collectionView.cellForItem(at: oldCellIndex) as? CategoryCollectionViewCell,
+            let spentText = spendAmountTextField.text,
+            let amount = spentText.amount,
+            let category = cell.title.text {
+            
+            let spend = Expense(id: Int(arc4random()), amount: amount, category: category, date: Date())
+            expenseService.addExpense(spend)
+            
+            spendAmountTextField.text = "Потрачено " + spentText
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
+                self.spendAmountTextField.text = " ₽"
+                self.updateMonthBudget()
+            })
         }
     }
     

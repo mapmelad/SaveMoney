@@ -24,7 +24,7 @@ protocol IExpenseService: class {
     
     var monthBudget: Int { get set }
     
-    var leftBudget: Int { get set }
+    var leftBudget: Int { get }
     
     var displayModel: [HistorySection] { get }
     
@@ -42,7 +42,10 @@ final class ExpenseService: IExpenseService {
     
     func randomizeData() { allItems = dataProvider.mockData() }
     
-    func addExpense(_ e: Expense) { allItems.insert(e, at: 0); postUpdateNotification() }
+    func addExpense(_ e: Expense) {
+        allItems.insert(e, at: 0)
+        postUpdateNotification()
+    }
     
     func totalSpent(with spends: [Expense]) -> Int { return spends.reduce(Int(0), { $0 + $1.amount }) }
     
@@ -52,7 +55,7 @@ final class ExpenseService: IExpenseService {
     
     var monthBudget = 10_000
     
-    var leftBudget = 5_000
+    var leftBudget: Int { return monthBudget - spentInThisMonth }
     
     var displayModel = [HistorySection]()
     
@@ -63,6 +66,13 @@ final class ExpenseService: IExpenseService {
     private let dataProvider: IDataProvider = MockDataProvider([])
     
     private var allItems = [Expense]() { didSet { updateDisplayModel(allItems) } }
+    
+    private var spentInThisMonth: Int {
+        let today = Date()
+        let thisMonthSpends = allItems.filter { $0.date.monthIn(today) }
+        
+        return totalSpent(with: thisMonthSpends)
+    }
     
     // MARK: - Methods
     

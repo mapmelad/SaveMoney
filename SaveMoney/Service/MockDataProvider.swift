@@ -25,6 +25,12 @@ final class MockDataProvider: IDataProvider {
     
     // MARK: - Private
     
+    // MARK: - Members
+    
+    private let maxSpend: UInt32 = 200
+    
+    // MARK: - Mock
+    
     private func mockLastYearData() -> [Expense] {
         var spends = [Expense]()
         
@@ -34,7 +40,7 @@ final class MockDataProvider: IDataProvider {
             var localSpends = [Expense]()
             
             for spendIdx in 1..<spendsCount {
-                let amount = Int(arc4random_uniform(12_000))
+                let amount = Int(arc4random_uniform(maxSpend))
                 let category = categories.randomElement
                 let id = Int(arc4random())
                 
@@ -67,7 +73,7 @@ final class MockDataProvider: IDataProvider {
                 var localSpends = [Expense]()
                 
                 for spendIdx in 1..<spendsCount {
-                    let amount = Int(arc4random_uniform(12_000))
+                    let amount = Int(arc4random_uniform(maxSpend))
                     let category = categories.randomElement
                     let id = Int(arc4random())
                     
