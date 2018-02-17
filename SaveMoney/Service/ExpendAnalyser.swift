@@ -18,7 +18,7 @@ final class ExpendAnalyser: IExpendAnalyser {
 
     func analyse(_ expends: [Expense]) -> (spent: Double, category: String) {
         let grouped = expends.group(by: { $0.category })
-        let sorted = Array(grouped.sorted(by: { $0.value.count > $1.value.count }))
+        let sorted = Array(grouped).sorted { expenseService.totalSpent(with: $0.value) > expenseService.totalSpent(with: $1.value) }
 
         let topSpent = sorted[0]
         let spentInMost = expenseService.totalSpent(with: topSpent.value)
