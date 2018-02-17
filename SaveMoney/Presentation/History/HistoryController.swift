@@ -55,7 +55,7 @@ final class HistoryController: UIViewController {
 extension HistoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // let size = CGSize(width: Device.width - 16 - 16, height: 128)
-        let size = CGSize(width: Device.width, height: 128)
+        let size = CGSize(width: Device.width, height: 168)
         
         return size
     }
@@ -75,12 +75,14 @@ extension HistoryController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
         cell.cardView.layer.cornerRadius = 6
-        cell.advice = "some advice - \(indexPath.row)"
+        //cell.advice = "some advice - \(indexPath.row)"
         
         return cell
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard historyTableView != scrollView else { return }
+        
         targetContentOffset.pointee = scrollView.contentOffset
         
         var factor: CGFloat = 0.75
@@ -148,12 +150,16 @@ extension HistoryController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 64
+        return 37
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
-        cell.date = "Date - \(section)"
+        cell.date = "17 февраля"
         
         return cell
     }
