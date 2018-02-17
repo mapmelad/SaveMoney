@@ -27,12 +27,7 @@ final class HistoryController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated) }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        datasource = ExpenseMockDataProvider.shared.spends
-        historyTableView.reloadData()
-    }
+    override func viewDidAppear(_ animated: Bool) { super.viewDidAppear(animated) }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -123,14 +118,7 @@ extension HistoryController: UITableViewDelegate {
 extension HistoryController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int { return dataProvider.itemCount }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == 0 {
-            log.debug("rows - \(dataProvider.spendsCount(in: section))")
-        }
-        
-        return dataProvider.spendsCount(in: section)
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return dataProvider.spendsCount(in: section) }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)

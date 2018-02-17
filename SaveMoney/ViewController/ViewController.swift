@@ -113,6 +113,7 @@ private extension ViewController {
     private func bindTipsAmount() {
         spendAmountTextField.rx.text
             .unwrap()
+            .distinct()
             .filter { !$0.isEmpty }
             .next { [unowned self] newValue in
                 self.updateTipsTextField(newValue)
@@ -136,7 +137,6 @@ private extension ViewController {
             self.onDeleteButtonTap()
         }
     }
-    
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -187,4 +187,14 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
          cellIndex = indexPath.row */
         
     }
+}
+
+extension ObservableType {
+    
+    /**
+     Takes a sequence of optional elements and returns a sequence of non-optional elements, filtering out any nil values.
+     
+     - returns: An observable sequence of non-optional elements
+     */
+    public var ignoreNil: RxSwift.Observable<Self.E> { return flatMap { Observable.from(optional: $0) } }
 }

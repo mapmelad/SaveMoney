@@ -40,10 +40,8 @@ final class ExpenseMockDataProvider {
     var todaySpends: [Expense] { return self.spends.last!.value }
     
     func addSpend(_ spend: Expense) {
-        log.debug("before - \(self.expenses.count)")
         self.expenses.append(spend)
         NotificationCenter.default.post(name: Notification.Name("shouldReloadTable"), object: nil)
-        log.debug("after - \(self.expenses.count)")
     }
     
     func spendHeader(for day: Int) -> String { return self.spends[day].key }
@@ -61,8 +59,6 @@ final class ExpenseMockDataProvider {
     private var spends: [(key: String, value: [Expense])] {
         let grouped = expenses.group(by: { $0.header })
         let sorted = Array(grouped.sorted(by: { $0.value[0].date < $1.value[0].date }))
-        
-        log.debug("spends count - \(sorted.count)")
         
         return sorted.reversed()
     }
