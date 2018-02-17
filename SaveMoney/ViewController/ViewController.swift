@@ -38,11 +38,13 @@ final class ViewController: UIViewController {
         setupKeyboardContainer()
     }
     
-    private func setupKeyboardContainer() {}
+    private func setupKeyboardContainer() {
+        spendAmountTextField.delegate = self
+    }
     
     // MARK: - Members
     
-    private let category = ["Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱"]
+    private let category = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
     // MARK: - Setup
     
@@ -86,6 +88,12 @@ extension ViewController {
             self.onDeleteButtonTap()
         }
     }
+    
+   
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool { return false }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {

@@ -63,7 +63,7 @@ final class HistoryController: UIViewController {
 extension HistoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // let size = CGSize(width: Device.width - 16 - 16, height: 128)
-        let size = CGSize(width: Device.width, height: 128)
+        let size = CGSize(width: Device.width, height: 168)
         
         return size
     }
@@ -83,7 +83,7 @@ extension HistoryController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
         cell.cardView.layer.cornerRadius = 6
-        cell.advice = "some advice - \(indexPath.row)"
+        //cell.advice = "some advice - \(indexPath.row)"
         
         return cell
     }
