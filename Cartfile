@@ -3,3 +3,21 @@
 ###
 
 github "SwifterSwift/SwifterSwift" ~> 4.0
+
+###
+### Reactive
+###
+
+github "ReactiveX/RxSwift" ~> 4.0
+
+###
+### Network
+###
+
+# github "khanlou/Promise"
+
+###
+### Logging
+###
+
+github "SwiftyBeaver/SwiftyBeaver"

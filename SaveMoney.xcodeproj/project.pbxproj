@@ -16,6 +16,12 @@
 		54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6CB203787E900E74918 /* MainViewController.swift */; };
 		54FDD6CF2037882200E74918 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6CE2037882200E74918 /* Extensions.swift */; };
 		54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */; };
+		B911EEBE2038232400B9F845 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEB92038232400B9F845 /* RxTest.framework */; };
+		B911EEBF2038232400B9F845 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBA2038232400B9F845 /* RxSwift.framework */; };
+		B911EEC02038232400B9F845 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBB2038232400B9F845 /* SwiftyBeaver.framework */; };
+		B911EEC12038232400B9F845 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBC2038232400B9F845 /* RxBlocking.framework */; };
+		B911EEC22038232400B9F845 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBD2038232400B9F845 /* RxCocoa.framework */; };
+		B911EEC52038233400B9F845 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B911EEC42038233400B9F845 /* Logger.swift */; };
 		B9F365B420381D2E00654984 /* SwifterSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F365B320381D2E00654984 /* SwifterSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +39,12 @@
 		7ABBF270B07C5D551F93C724 /* Pods-SaveMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney.debug.xcconfig"; sourceTree = "<group>"; };
 		B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SaveMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59BFB6CDDDC98B781FDB53F /* Pods-SaveMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SaveMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-SaveMoney/Pods-SaveMoney.release.xcconfig"; sourceTree = "<group>"; };
+		B911EEB92038232400B9F845 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		B911EEBA2038232400B9F845 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		B911EEBB2038232400B9F845 /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
+		B911EEBC2038232400B9F845 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		B911EEBD2038232400B9F845 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		B911EEC42038233400B9F845 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B9F365B320381D2E00654984 /* SwifterSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterSwift.framework; path = Carthage/Build/iOS/SwifterSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +55,11 @@
 			files = (
 				26405EFD9CD614CCFF15E17E /* Pods_SaveMoney.framework in Frameworks */,
 				B9F365B420381D2E00654984 /* SwifterSwift.framework in Frameworks */,
+				B911EEBE2038232400B9F845 /* RxTest.framework in Frameworks */,
+				B911EEBF2038232400B9F845 /* RxSwift.framework in Frameworks */,
+				B911EEC02038232400B9F845 /* SwiftyBeaver.framework in Frameworks */,
+				B911EEC12038232400B9F845 /* RxBlocking.framework in Frameworks */,
+				B911EEC22038232400B9F845 /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +87,7 @@
 		540F047F2037864C0045B5CC /* SaveMoney */ = {
 			isa = PBXGroup;
 			children = (
+				B911EEC32038232900B9F845 /* Core */,
 				540F04802037864C0045B5CC /* AppDelegate.swift */,
 				54FDD6CE2037882200E74918 /* Extensions.swift */,
 				54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */,
@@ -91,9 +109,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		B911EEC32038232900B9F845 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B911EEC42038233400B9F845 /* Logger.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		D301F35D20618F46C9E657F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B911EEBC2038232400B9F845 /* RxBlocking.framework */,
+				B911EEBD2038232400B9F845 /* RxCocoa.framework */,
+				B911EEBA2038232400B9F845 /* RxSwift.framework */,
+				B911EEB92038232400B9F845 /* RxTest.framework */,
+				B911EEBB2038232400B9F845 /* SwiftyBeaver.framework */,
 				B9F365B320381D2E00654984 /* SwifterSwift.framework */,
 				B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */,
 			);
@@ -240,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */,
+				B911EEC52038233400B9F845 /* Logger.swift in Sources */,
 				54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
