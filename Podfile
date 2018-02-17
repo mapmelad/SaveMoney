@@ -7,5 +7,6 @@ target 'SaveMoney' do
 
   # Pods for SaveMoney
 	pod "RxSwiftExt"
+    pod 'Reveal-SDK', :configurations => ['Debug']
 
 end

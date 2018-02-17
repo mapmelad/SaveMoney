@@ -11,4 +11,10 @@ import UIKit
 final class AdviceCell: UICollectionViewCell {
     // MARK: - Outlets
 
+    @IBOutlet var cardView: UIView!
+    @IBOutlet var adviceLabel: UILabel!
+
+    // MARK: - Setters
+
+    var advice: String = "" { didSet { adviceLabel.text = advice } }
 }

@@ -51,6 +51,7 @@ final class HistoryController: UIViewController {
 
 extension HistoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // let size = CGSize(width: Device.width - 16 - 16, height: 128)
         let size = CGSize(width: Device.width, height: 128)
         
         return size
@@ -68,9 +69,53 @@ extension HistoryController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
+        cell.cardView.layer.cornerRadius = 6
+        cell.advice = "some advice - \(indexPath.row)"
         
         return cell
     }
+    
+    /*func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let cellWitdth = Device.width
+        let cellPading: CGFloat = 16
+     
+        var page = (scrollView.contentOffset.x - cellWitdth / 2) / (cellWitdth + cellPading) + 1
+     
+        if velocity.x > 0 { page += 1 }
+        if velocity.x < 0 { page -= 1 }
+        page = max(page, 0)
+     
+        let newOffset = page * (cellWitdth + cellPading)
+        targetContentOffset.pointee.x = newOffset
+    }*/
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        targetContentOffset.pointee = scrollView.contentOffset
+        var factor: CGFloat = 0.75
+        if velocity.x < 0 {
+            factor = -factor
+        }
+        let indexPath = IndexPath(row: Int((scrollView.contentOffset.x / Device.width + factor)), section: 0)
+        
+        adviceCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    /* - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+     withVelocity:(CGPoint)velocity
+     targetContentOffset:(inout CGPoint *)targetContentOffset
+     {
+     CGFloat cellWidth = self.cellWidth;
+     CGFloat cellPadding = 9;
+     
+     NSInteger page = (scrollView.contentOffset.x - cellWidth / 2) / (cellWidth + cellPadding) + 1;
+     
+     if (velocity.x > 0) page++;
+     if (velocity.x < 0) page--;
+     page = MAX(page,0);
+     
+     CGFloat newOffset = page * (cellWidth + cellPadding);
+     targetContentOffset->x = newOffset;
+     } */
 }
 
 extension HistoryController: UITableViewDelegate {
