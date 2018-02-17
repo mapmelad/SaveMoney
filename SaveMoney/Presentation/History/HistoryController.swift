@@ -17,24 +17,12 @@ final class HistoryController: UIViewController {
     @IBOutlet var adviceCollectionView: UICollectionView!
     @IBOutlet var historyTableView: UITableView!
     
-    let years = mockYears()
-    
     // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupScreen()
-        
-        let year = mockYears().first!
-        
-        for m in year.months {
-            for d in m.days {
-                for s in d.spendings {
-                    log.debug("did spend \(s.amount) in \(s.cat) at \(d.day) - \(m.mon) - \(year.year)")
-                }
-            }
-        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -44,6 +32,10 @@ final class HistoryController: UIViewController {
     private let historyHeaderReuseId = "histHeader"
     
     private let historyCellReuseId = "histCell"
+    
+    private let dataProvider = ExpenseMockDataProvider.shared
+    
+    private let datasource = ExpenseMockDataProvider.shared.spends
     
     // MARK: - Methods
     
@@ -101,22 +93,43 @@ extension HistoryController: UICollectionViewDataSource {
     }
 }
 
-extension HistoryController: UITableViewDelegate {
-    
+final class Box<A> {
+    var value: A
+    init(_ val: A) {
+        value = val
+    }
+}
+
+public extension Sequence {
+    func group<U: Hashable>(by key: (Iterator.Element) -> U) -> [U: [Iterator.Element]] {
+        var categories: [U: Box<[Iterator.Element]>] = [:]
+        for element in self {
+            let key = key(element)
+            if case nil = categories[key]?.value.append(element) {
+                categories[key] = Box([element])
+            }
+        }
+        var result: [U: [Iterator.Element]] = Dictionary(minimumCapacity: categories.count)
+        for (key, val) in categories {
+            result[key] = val.value
+        }
+        
+        return result
+    }
 }
 
 extension HistoryController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        var c = 0
-        for y in self.years { for m in y.months { c += m.days.count } }
+        let sections = datasource.group(by: { $0.header }).count
         
-        return c
+        return sections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let month = section / 31
+        let item = datasource[section]
         
-        return self.years[0].months[month].days[section % 31].spendings.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,11 +138,11 @@ extension HistoryController: UITableViewDataSource {
         let section = indexPath.section
         
         let month = section / 31
-        let item = years[0].months[month].days[section % 31].spendings[row]
+        let item = datasource[0] // years[0].months[month].days[section % 31].spendings[row]
         
-        cell.category = item.cat
-        cell.date = item.comment
-        cell.amount = Int(item.amount)
+        cell.category = item.category
+        cell.date = item.header
+        cell.amount = item.amount
         
         return cell
     }

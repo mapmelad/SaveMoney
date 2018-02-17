@@ -27,6 +27,8 @@
 		B911EEC52038233400B9F845 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B911EEC42038233400B9F845 /* Logger.swift */; };
 		B91DA6F7203875650088A0F7 /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91DA6F6203875650088A0F7 /* RxSwiftExt.framework */; };
 		B91DA6F9203875690088A0F7 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91DA6F8203875690088A0F7 /* Timepiece.framework */; };
+		B91DA6FC203875BF0088A0F7 /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DA6FB203875BF0088A0F7 /* MockDataProvider.swift */; };
+		B91DA6FE203876410088A0F7 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DA6FD203876410088A0F7 /* ArrayExtension.swift */; };
 		B96CAAA820385E5200D09D38 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */; };
 		B995629B203844670003C71E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B995629A203844670003C71E /* StringExtension.swift */; };
 		B9F1CB192038295E00BC25C5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F1CB182038295E00BC25C5 /* History.storyboard */; };
@@ -66,6 +68,8 @@
 		B911EEC42038233400B9F845 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B91DA6F6203875650088A0F7 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
 		B91DA6F8203875690088A0F7 /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = Carthage/Build/iOS/Timepiece.framework; sourceTree = "<group>"; };
+		B91DA6FB203875BF0088A0F7 /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
+		B91DA6FD203876410088A0F7 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		B995629A203844670003C71E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B9F1CB182038295E00BC25C5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		540F047F2037864C0045B5CC /* SaveMoney */ = {
 			isa = PBXGroup;
 			children = (
+				B91DA6FA203875B40088A0F7 /* Service */,
 				B995629C203844B00003C71E /* Support */,
 				B9F352BD20383A4200A1A53B /* Common */,
 				B9F1CB172038292D00BC25C5 /* Presentation */,
@@ -151,6 +156,14 @@
 				B911EEC42038233400B9F845 /* Logger.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		B91DA6FA203875B40088A0F7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B91DA6FB203875BF0088A0F7 /* MockDataProvider.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		B995629C203844B00003C71E /* Support */ = {
@@ -209,6 +222,7 @@
 				5400105B2038539400525703 /* ComparableExtension.swift */,
 				5400105D203853E000525703 /* CommonExtensions.swift */,
 				B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */,
+				B91DA6FD203876410088A0F7 /* ArrayExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -383,11 +397,13 @@
 				B9F352BC2038386600A1A53B /* HistoryController.swift in Sources */,
 				B9F352CC2038428600A1A53B /* IntExtension.swift in Sources */,
 				544CD48520383B7700192D32 /* SettingsViewController.swift in Sources */,
+				B91DA6FC203875BF0088A0F7 /* MockDataProvider.swift in Sources */,
 				B96CAAA820385E5200D09D38 /* UITextFieldExtension.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
 				5400105C2038539400525703 /* ComparableExtension.swift in Sources */,
 				B9F352BF20383A5700A1A53B /* RxSwiftExtension.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
+				B91DA6FE203876410088A0F7 /* ArrayExtension.swift in Sources */,
 				5400105E203853E000525703 /* CommonExtensions.swift in Sources */,
 				540112FA20384827003FB5DA /* MocData.swift in Sources */,
 			);
