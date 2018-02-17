@@ -6,6 +6,6 @@ target 'SaveMoney' do
   use_frameworks!
 
   # Pods for SaveMoney
-	pod "RxSwiftExt"
+	# pod "RxSwiftExt"
     # pod 'Reveal-SDK', :configurations => ['Debug']
 end

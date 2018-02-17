@@ -25,6 +25,8 @@
 		B911EEC12038232400B9F845 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBC2038232400B9F845 /* RxBlocking.framework */; };
 		B911EEC22038232400B9F845 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBD2038232400B9F845 /* RxCocoa.framework */; };
 		B911EEC52038233400B9F845 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B911EEC42038233400B9F845 /* Logger.swift */; };
+		B91DA6F7203875650088A0F7 /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91DA6F6203875650088A0F7 /* RxSwiftExt.framework */; };
+		B91DA6F9203875690088A0F7 /* Timepiece.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91DA6F8203875690088A0F7 /* Timepiece.framework */; };
 		B96CAAA820385E5200D09D38 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */; };
 		B995629B203844670003C71E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B995629A203844670003C71E /* StringExtension.swift */; };
 		B9F1CB192038295E00BC25C5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F1CB182038295E00BC25C5 /* History.storyboard */; };
@@ -62,6 +64,8 @@
 		B911EEBC2038232400B9F845 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		B911EEBD2038232400B9F845 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		B911EEC42038233400B9F845 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B91DA6F6203875650088A0F7 /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
+		B91DA6F8203875690088A0F7 /* Timepiece.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Timepiece.framework; path = Carthage/Build/iOS/Timepiece.framework; sourceTree = "<group>"; };
 		B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		B995629A203844670003C71E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B9F1CB182038295E00BC25C5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26405EFD9CD614CCFF15E17E /* Pods_SaveMoney.framework in Frameworks */,
+				B91DA6F9203875690088A0F7 /* Timepiece.framework in Frameworks */,
+				B91DA6F7203875650088A0F7 /* RxSwiftExt.framework in Frameworks */,
 				B9F365B420381D2E00654984 /* SwifterSwift.framework in Frameworks */,
 				B911EEBE2038232400B9F845 /* RxTest.framework in Frameworks */,
 				B911EEBF2038232400B9F845 /* RxSwift.framework in Frameworks */,
@@ -210,6 +216,8 @@
 		D301F35D20618F46C9E657F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B91DA6F8203875690088A0F7 /* Timepiece.framework */,
+				B91DA6F6203875650088A0F7 /* RxSwiftExt.framework */,
 				B911EEBC2038232400B9F845 /* RxBlocking.framework */,
 				B911EEBD2038232400B9F845 /* RxCocoa.framework */,
 				B911EEBA2038232400B9F845 /* RxSwift.framework */,
@@ -260,7 +268,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Semyon;
 				TargetAttributes = {
 					540F047C2037864C0045B5CC = {
@@ -417,7 +425,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -425,7 +435,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -467,7 +481,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -475,7 +491,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
