@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    let category = ["Транспорт 🚎","Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱"]
+    @IBOutlet var collectionView: UICollectionView!
+    let category = ["Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +23,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        return CGSize(width: category[indexPath.row].size(OfFont: UIFont.systemFont(ofSize: 17.0)).width + 15.0, height: 30)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.category[indexPath.row].size(OfFont: UIFont.systemFont(ofSize: 17.0)).width + 15.0, height: 30)
     }
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -38,7 +36,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return category.count
+        return self.category.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,5 +47,3 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
         return cell
     }
 }
-
-

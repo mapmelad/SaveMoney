@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension Comparable{
-    func bound(min: Self, max: Self) -> Self{
+extension Comparable {
+    func bound(min: Self, max: Self) -> Self {
         precondition(min < max)
         if self < min { return min }
         if self > max { return max }
@@ -23,4 +23,3 @@ extension String {
         return (self as NSString).size(withAttributes: [NSAttributedStringKey.font: font])
     }
 }
-

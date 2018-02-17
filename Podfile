@@ -6,6 +6,6 @@ target 'SaveMoney' do
   use_frameworks!
 
   # Pods for SaveMoney
-	pod 'SwifterSwift'
+	# pod 'SwifterSwift'
 
 end
