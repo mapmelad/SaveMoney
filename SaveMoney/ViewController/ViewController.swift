@@ -37,6 +37,8 @@ final class ViewController: UIViewController {
         setupMockDataProvider()
         setupScreen()
         setupBindings()
+        
+        dataProvider.mockData()
     }
     
     private func setupMockDataProvider() { dataProvider.categories = categories }

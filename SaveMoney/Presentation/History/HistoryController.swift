@@ -39,7 +39,7 @@ final class HistoryController: UIViewController {
     
     private let dataProvider = ExpenseMockDataProvider.shared
     
-    private var datasource = ExpenseMockDataProvider.shared.spends
+    private var datasource: [HistorySection] { return ExpenseMockDataProvider.shared.itemsToDisplay }
     
     // MARK: - Methods
     
@@ -75,13 +75,9 @@ extension HistoryController: UICollectionViewDelegateFlowLayout {
 }
 
 extension HistoryController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int { return 1 }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
-    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return 7 }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
@@ -108,7 +104,7 @@ extension HistoryController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
         
-        cell.date = dataProvider.spendHeader(for: section)
+        cell.date = datasource[section].date
         cell.totalSpent = dataProvider.totalSpent(in: section)
         
         return cell
@@ -116,16 +112,16 @@ extension HistoryController: UITableViewDelegate {
 }
 
 extension HistoryController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int { return dataProvider.itemCount }
+    func numberOfSections(in tableView: UITableView) -> Int { return datasource.count }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return dataProvider.spendsCount(in: section) }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return datasource[section].spends.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
         let row = indexPath.row
         let section = indexPath.section
         
-        let item = dataProvider.spends(in: section)[row]
+        let item = datasource[section].spends[row]
         let date = item.date
         let min = date.minute
         let humanMinute = min < 10 ? "0\(min)" : "\(min)"

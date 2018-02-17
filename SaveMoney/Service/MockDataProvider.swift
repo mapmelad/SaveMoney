@@ -23,6 +23,16 @@ struct Expense {
     }
 }
 
+final class HistorySection {
+    let date: String
+    var spends: [Expense]
+    
+    init(_ expense: Expense) {
+        self.date = expense.header
+        self.spends = [expense]
+    }
+}
+
 final class ExpenseMockDataProvider {
     static let shared = ExpenseMockDataProvider()
     
@@ -53,6 +63,20 @@ final class ExpenseMockDataProvider {
     func spendsCount(in day: Int) -> Int { return self.spends(in: day).count }
     
     // MARK: - Private
+    
+    var itemsToDisplay = [HistorySection]()
+    
+    func mockData() {
+        let data = mockCurrentYear()
+        itemsToDisplay = data.reduce([]) { (grouped: [HistorySection], item: Expense) in
+            if let gi = grouped.first(where: { $0.date == item.header }) {
+                gi.spends.append(item)
+                
+                return grouped
+            }
+            return grouped + [HistorySection(item)]
+        }
+    }
     
     private lazy var expenses: [Expense] = { mockCurrentYear() }()
     
