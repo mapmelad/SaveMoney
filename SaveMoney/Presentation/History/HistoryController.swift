@@ -15,8 +15,9 @@ final class HistoryController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet var adviceCollectionView: UICollectionView!
-    
     @IBOutlet var historyTableView: UITableView!
+    
+    let years = mockYears()
     
     // MARK: - Overrides
     
@@ -24,6 +25,16 @@ final class HistoryController: UIViewController {
         super.viewDidLoad()
         
         setupScreen()
+        
+        let year = mockYears().first!
+        
+        for m in year.months {
+            for d in m.days {
+                for s in d.spendings {
+                    log.debug("did spend \(s.amount) in \(s.cat) at \(d.day) - \(m.mon) - \(year.year)")
+                }
+            }
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -60,11 +71,13 @@ extension HistoryController: UICollectionViewDelegateFlowLayout {
 
 extension HistoryController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,19 +107,29 @@ extension HistoryController: UITableViewDelegate {
 
 extension HistoryController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        var c = 0
+        for y in self.years { for m in y.months { c += m.days.count } }
+        
+        return c
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        let month = section / 31
+        
+        return self.years[0].months[month].days[section % 31].spendings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
+        let row = indexPath.row
+        let section = indexPath.section
         
-        cell.category = "cat"
-        cell.date = "12 feb"
-        cell.amount = 88
+        let month = section / 31
+        let item = years[0].months[month].days[section % 31].spendings[row]
+        
+        cell.category = item.cat
+        cell.date = item.comment
+        cell.amount = Int(item.amount)
         
         return cell
     }

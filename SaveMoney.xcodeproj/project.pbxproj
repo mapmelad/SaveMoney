@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26405EFD9CD614CCFF15E17E /* Pods_SaveMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */; };
+		540112FA20384827003FB5DA /* MocData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540112F920384827003FB5DA /* MocData.swift */; };
 		540F04812037864C0045B5CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F04802037864C0045B5CC /* AppDelegate.swift */; };
 		540F04832037864C0045B5CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F04822037864C0045B5CC /* ViewController.swift */; };
 		540F04862037864C0045B5CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540F04842037864C0045B5CC /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		540112F920384827003FB5DA /* MocData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocData.swift; sourceTree = "<group>"; };
 		540F047D2037864C0045B5CC /* SaveMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		540F04802037864C0045B5CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		540F04822037864C0045B5CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				B9F352BD20383A4200A1A53B /* Common */,
 				B9F1CB172038292D00BC25C5 /* Presentation */,
 				B911EEC32038232900B9F845 /* Core */,
+				540112F920384827003FB5DA /* MocData.swift */,
 				54FDD6D02037883400E74918 /* CategoryCollectionViewCell.swift */,
 				54FDD6CD203787F400E74918 /* ViewController */,
 				540F04842037864C0045B5CC /* Main.storyboard */,
@@ -188,6 +191,7 @@
 		B9F352C220383B5B00A1A53B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				54FDD6CE2037882200E74918 /* Extensions.swift */,
 				B9F352C520383BD200A1A53B /* DeviceExtension.swift */,
 				B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */,
 				B9F352C020383B1900A1A53B /* Reusable.swift */,
@@ -372,6 +376,7 @@
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
 				B9F352BF20383A5700A1A53B /* RxSwiftExtension.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
+				540112FA20384827003FB5DA /* MocData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
