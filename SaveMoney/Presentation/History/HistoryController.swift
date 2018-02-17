@@ -72,12 +72,12 @@ extension HistoryController: UICollectionViewDelegateFlowLayout {
 extension HistoryController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 0
+        return 7
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

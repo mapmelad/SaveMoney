@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 class SettingsViewController: UIViewController {
-
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var budgetTextField: UITextField!
-    @IBOutlet weak var budgetDayLabel: UILabel!
+    
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var budgetTextField: UITextField!
+    @IBOutlet var budgetDayLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +26,17 @@ class SettingsViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func bindBudgetDayLabel(){
+    private func bindBudgetDayLabel() {
         
         let calendar = Calendar.current
         let date = Date()
         let interval = calendar.dateInterval(of: .month, for: date)!
         let days = calendar.dateComponents([.day], from: interval.start, to: interval.end).day!
         print(days)
-        budgetDayLabel.text = String(10000/days)
+        budgetDayLabel.text = String(10000 / days)
     }
     
-    private func bindDateLabel(){
+    private func bindDateLabel() {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M"
         let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date())
@@ -44,6 +44,4 @@ class SettingsViewController: UIViewController {
         
         dateLabel.text = "До 1 \(getRussianMonth(Int(nameOfMonth)!))"
     }
-    
-    
 }

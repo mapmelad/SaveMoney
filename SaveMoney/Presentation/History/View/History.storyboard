@@ -76,34 +76,39 @@
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="64" estimatedRowHeight="64" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Y4-US-YhQ">
                                 <rect key="frame" x="0.0" y="180" width="375" height="487"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="histHeader" rowHeight="64" id="b1Y-qX-zeK" customClass="HistorySectionHeaderCell" customModule="SaveMoney" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="64"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="histHeader" rowHeight="37" id="b1Y-qX-zeK" customClass="HistorySectionHeaderCell" customModule="SaveMoney" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b1Y-qX-zeK" id="e4I-1d-s0Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="36.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwV-g3-jYE">
-                                                    <rect key="frame" x="15" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.11.2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwV-g3-jYE">
+                                                    <rect key="frame" x="15" y="7" width="345" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" name="systemYellowColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.5942650437" green="0.39293056910000002" blue="0.56470584580000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="IwV-g3-jYE" firstAttribute="top" secondItem="e4I-1d-s0Y" secondAttribute="topMargin" id="FUM-8k-eJj"/>
+                                                <constraint firstItem="IwV-g3-jYE" firstAttribute="leading" secondItem="e4I-1d-s0Y" secondAttribute="leading" constant="15" id="HtO-WW-oHN"/>
                                                 <constraint firstItem="IwV-g3-jYE" firstAttribute="leading" secondItem="e4I-1d-s0Y" secondAttribute="leadingMargin" id="K5B-i1-RfJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="IwV-g3-jYE" secondAttribute="trailing" constant="15" id="LGv-b1-bl1"/>
+                                                <constraint firstAttribute="bottom" secondItem="IwV-g3-jYE" secondAttribute="bottom" constant="8.5" id="TCl-i0-5XU"/>
+                                                <constraint firstItem="IwV-g3-jYE" firstAttribute="top" secondItem="e4I-1d-s0Y" secondAttribute="top" constant="7" id="ehe-dr-k56"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="IwV-g3-jYE" id="Tls-mc-ZVA"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HistoryCell" id="plp-Bc-ewc" customClass="HistoryCell" customModule="SaveMoney" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="119.5" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="92.5" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="plp-Bc-ewc" id="1qW-5t-Adk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
@@ -164,7 +169,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.42745098040000001" green="0.41960784309999999" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="2Y4-US-YhQ" firstAttribute="top" secondItem="Uqc-LI-asX" secondAttribute="bottom" id="0Qt-xL-lUp"/>
                             <constraint firstItem="Uqc-LI-asX" firstAttribute="leading" secondItem="2HP-oi-Xcu" secondAttribute="leading" id="FNR-eT-gqn"/>

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		26405EFD9CD614CCFF15E17E /* Pods_SaveMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1A16C93DAD579DFF41BA00E /* Pods_SaveMoney.framework */; };
+		5400105C2038539400525703 /* ComparableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5400105B2038539400525703 /* ComparableExtension.swift */; };
+		5400105E203853E000525703 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5400105D203853E000525703 /* CommonExtensions.swift */; };
 		540112FA20384827003FB5DA /* MocData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540112F920384827003FB5DA /* MocData.swift */; };
 		540F04812037864C0045B5CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F04802037864C0045B5CC /* AppDelegate.swift */; };
 		540F04832037864C0045B5CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540F04822037864C0045B5CC /* ViewController.swift */; };
@@ -23,7 +25,6 @@
 		B911EEC12038232400B9F845 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBC2038232400B9F845 /* RxBlocking.framework */; };
 		B911EEC22038232400B9F845 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B911EEBD2038232400B9F845 /* RxCocoa.framework */; };
 		B911EEC52038233400B9F845 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B911EEC42038233400B9F845 /* Logger.swift */; };
-		B9956299203844590003C71E /* ComparableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9956298203844590003C71E /* ComparableExtension.swift */; };
 		B995629B203844670003C71E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B995629A203844670003C71E /* StringExtension.swift */; };
 		B9F1CB192038295E00BC25C5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F1CB182038295E00BC25C5 /* History.storyboard */; };
 		B9F352BC2038386600A1A53B /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352BB2038386600A1A53B /* HistoryController.swift */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5400105B2038539400525703 /* ComparableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparableExtension.swift; sourceTree = "<group>"; };
+		5400105D203853E000525703 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		540112F920384827003FB5DA /* MocData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MocData.swift; sourceTree = "<group>"; };
 		540F047D2037864C0045B5CC /* SaveMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		540F04802037864C0045B5CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		B911EEBC2038232400B9F845 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		B911EEBD2038232400B9F845 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		B911EEC42038233400B9F845 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		B9956298203844590003C71E /* ComparableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparableExtension.swift; sourceTree = "<group>"; };
 		B995629A203844670003C71E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B9F1CB182038295E00BC25C5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		B9F352BB2038386600A1A53B /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
@@ -191,13 +193,13 @@
 		B9F352C220383B5B00A1A53B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				54FDD6CE2037882200E74918 /* Extensions.swift */,
 				B9F352C520383BD200A1A53B /* DeviceExtension.swift */,
 				B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */,
 				B9F352C020383B1900A1A53B /* Reusable.swift */,
 				B9F352CB2038428600A1A53B /* IntExtension.swift */,
-				B9956298203844590003C71E /* ComparableExtension.swift */,
 				B995629A203844670003C71E /* StringExtension.swift */,
+				5400105B2038539400525703 /* ComparableExtension.swift */,
+				5400105D203853E000525703 /* CommonExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -363,7 +365,6 @@
 				54FDD6CC203787E900E74918 /* MainViewController.swift in Sources */,
 				B911EEC52038233400B9F845 /* Logger.swift in Sources */,
 				54FDD6D12037883400E74918 /* CategoryCollectionViewCell.swift in Sources */,
-				B9956299203844590003C71E /* ComparableExtension.swift in Sources */,
 				B995629B203844670003C71E /* StringExtension.swift in Sources */,
 				B9F352C120383B1A00A1A53B /* Reusable.swift in Sources */,
 				B9F352CA20383D1400A1A53B /* HistorySectionHeaderCell.swift in Sources */,
@@ -374,8 +375,10 @@
 				B9F352CC2038428600A1A53B /* IntExtension.swift in Sources */,
 				544CD48520383B7700192D32 /* SettingsViewController.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
+				5400105C2038539400525703 /* ComparableExtension.swift in Sources */,
 				B9F352BF20383A5700A1A53B /* RxSwiftExtension.swift in Sources */,
 				540F04812037864C0045B5CC /* AppDelegate.swift in Sources */,
+				5400105E203853E000525703 /* CommonExtensions.swift in Sources */,
 				540112FA20384827003FB5DA /* MocData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
