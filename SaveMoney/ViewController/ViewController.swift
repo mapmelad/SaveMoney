@@ -21,6 +21,14 @@ final class ViewController: UIViewController {
     
     @IBOutlet var deleteButton: UIButton!
     
+    @IBOutlet var addButton: UIButton!
+    
+    @IBOutlet var monthBudgetLabel: UILabel!
+    
+    @IBOutlet var todayBudget: UILabel!
+    
+    @IBOutlet var errorLabel: UILabel!
+    
     // MARK: - Overrides
     
     override func viewDidLoad() {
@@ -32,7 +40,8 @@ final class ViewController: UIViewController {
     }
     
     private func setupMockDataProvider() {
-        dataProvider.categories = categories
+        expenseService.categories = categories
+        expenseService.randomizeData()
     }
     
     private func setupScreen() {
@@ -40,18 +49,32 @@ final class ViewController: UIViewController {
     }
     
     private func setupContainers() {
+        updateBalanceContainer()
         setupKeyboardContainer()
     }
     
-    private func setupKeyboardContainer() {
-        spendAmountTextField.delegate = self
+    // MARK: Balance Container
+    
+    private func updateBalanceContainer() {
+        updateMonthBudget()
+        updateDayBudget()
     }
+    
+    private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget) ₽ на \(expenseService.daysLeftThisMonth) дней" }
+    
+    private func updateDayBudget() { todayBudget.text = "\(expenseService.leftDayBudget) ₽" }
+    
+    // MARK: Keyboard Container
+    
+    private func setupKeyboardContainer() { spendAmountTextField.delegate = self }
     
     // MARK: - Members
     
+    var oldCellIndex = IndexPath(row: -1, section: -1)
+    
     private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
-    private let dataProvider = ExpenseMockDataProvider.shared
+    private let expenseService: IExpenseService = ExpenseService.shared
     
     // MARK: - Setup
     
@@ -67,11 +90,43 @@ private extension ViewController {
         bindTipsAmount()
         bindKeyboardTaps()
         bindKeyboardDelete()
+        bindAddButton()
+    }
+    
+    private func bindMoneyLeft() {}
+    
+    private func bindAddButton() {
+        addButton.rx.tap.next { [unowned self] in
+            if self.oldCellIndex.row == -1 {
+                self.errorLabel.isHidden = false
+            } else {
+                self.errorLabel.isHidden = true
+                self.addExpense()
+            }
+        }
+    }
+    
+    private func addExpense() {
+        if let cell = collectionView.cellForItem(at: oldCellIndex) as? CategoryCollectionViewCell,
+            let spentText = spendAmountTextField.text,
+            let amount = spentText.amount,
+            let category = cell.title.text {
+            
+            let spend = Expense(id: Int(arc4random()), amount: amount, category: category, date: Date())
+            expenseService.addExpense(spend)
+            
+            spendAmountTextField.text = "Потрачено " + spentText
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
+                self.spendAmountTextField.text = " ₽"
+                self.updateBalanceContainer()
+            })
+        }
     }
     
     private func bindTipsAmount() {
         spendAmountTextField.rx.text
             .unwrap()
+            .distinct()
             .filter { !$0.isEmpty }
             .next { [unowned self] newValue in
                 self.updateTipsTextField(newValue)
@@ -95,7 +150,6 @@ private extension ViewController {
             self.onDeleteButtonTap()
         }
     }
-    
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -115,8 +169,45 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
         
+        if indexPath == oldCellIndex {
+            cell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
+        } else {
+            cell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+        }
+        
         cell.title.text = categories[indexPath.row]
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell {
+            selectedCell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
+            
+            if let oldCell = collectionView.cellForItem(at: oldCellIndex) as? CategoryCollectionViewCell {
+                oldCell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+            }
+            
+            oldCellIndex = indexPath
+        }
+        
+        /* let oldCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: IndexPath(row:cellIndex, section: 0))
+         let newCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
+         
+         oldCell.bgView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+         newCell.bgView.backgroundColor = UIColor(red:0.98, green:0.51, blue:0.12, alpha:1.0)
+         print(cellIndex, indexPath.row)
+         cellIndex = indexPath.row */
+        
+    }
+}
+
+extension ObservableType {
+    
+    /**
+     Takes a sequence of optional elements and returns a sequence of non-optional elements, filtering out any nil values.
+     
+     - returns: An observable sequence of non-optional elements
+     */
+    public var ignoreNil: RxSwift.Observable<Self.E> { return flatMap { Observable.from(optional: $0) } }
 }

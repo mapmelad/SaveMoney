@@ -16,10 +16,12 @@ final class HistorySectionHeaderCell: UITableViewCell, HistoryHeader {
     // MARK: - Outlets
 
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var totalSpentLabel: UILabel!
 
     // MARK: - Setters
 
     var date: String = "" { didSet { dateLabel.text = date } }
+    var totalSpent: Int = 1337 { didSet { totalSpentLabel.text = "Всего: \(totalSpent) ₽" } }
 
     // MARK: - Overrides
 

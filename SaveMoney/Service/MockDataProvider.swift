@@ -6,57 +6,90 @@
 //  Copyright © 2018 Semyon. All rights reserved.
 //
 
-import Timepiece
 import UIKit
 
-struct Expense {
-    let id: Int
+protocol IDataProvider: class {
+    func mockData() -> [Expense]
     
-    let amount: Int
-    let category: String
-    let date: Date
-    
-    var header: String {
-        return "\(self.date.day) \(self.date.month)"
-    }
+    var categories: [String] { get set }
 }
 
-final class ExpenseMockDataProvider {
-    static let shared = ExpenseMockDataProvider()
+final class MockDataProvider: IDataProvider {
+    init(_ cats: [String]) { categories = cats }
     
-    // MARK: - Members
+    // MARK: - IDataProvider
     
-    var categories = [String]()
+    func mockData() -> [Expense] { return mockCurrentYear() }
     
-    var monthBudget = 10_000
-    
-    lazy var spends: [Expense] = { mockData() }()
+    var categories: [String]
     
     // MARK: - Private
     
-    private func mockData() -> [Expense] {
+    // MARK: - Members
+    
+    private let maxSpend: UInt32 = 200
+    
+    // MARK: - Mock
+    
+    private func mockLastYearData() -> [Expense] {
         var spends = [Expense]()
-        
-        let startDate = Date()
-        let endDate = Date()
         
         for dayIdx in 1...31 {
             let spendsCount = Int(arc4random_uniform(10)) + 1
             
+            var localSpends = [Expense]()
+            
             for spendIdx in 1..<spendsCount {
-                let amount = Int(arc4random_uniform(12_000))
+                let amount = Int(arc4random_uniform(maxSpend))
                 let category = categories.randomElement
                 let id = Int(arc4random())
                 
-                let hour = Int(arc4random_uniform(12 + 1))
-                let date = Date(year: 2017, month: 12, day: dayIdx)
+                let hour = Int(arc4random_uniform(24 + 1))
+                let minute = Int(arc4random_uniform(60))
+                let date = Date(year: 2_017, month: 12, day: dayIdx, hour: hour, minute: minute, second: minute)
                 
                 let expense = Expense(id: id, amount: amount, category: category, date: date)
                 
-                spends.append(expense)
+                localSpends.append(expense)
             }
+            let sorted = localSpends.sorted(by: { $0.date < $1.date })
+            spends.append(contentsOf: sorted)
         }
         
         return spends
+    }
+    
+    private func mockCurrentYear() -> [Expense] {
+        var spends = mockLastYearData()
+        
+        for monthIdx in 1...2 {
+            for dayIdx in 1...31 {
+                
+                if monthIdx > 2 { break }
+                if monthIdx == 2 { if dayIdx > Date().day { break } }
+                
+                let spendsCount = Int(arc4random_uniform(3)) + 1
+                
+                var localSpends = [Expense]()
+                
+                for spendIdx in 1..<spendsCount {
+                    let amount = Int(arc4random_uniform(maxSpend))
+                    let category = categories.randomElement
+                    let id = Int(arc4random())
+                    
+                    let hour = Int(arc4random_uniform(24 + 1))
+                    let minute = Int(arc4random_uniform(60))
+                    let date = Date(year: 2_018, month: monthIdx, day: dayIdx, hour: hour, minute: minute, second: minute)
+                    
+                    let expense = Expense(id: id, amount: amount, category: category, date: date)
+                    
+                    localSpends.append(expense)
+                }
+                let sorted = localSpends.sorted(by: { $0.date < $1.date })
+                spends.append(contentsOf: sorted)
+            }
+        }
+        
+        return spends.sorted(by: { $0.date > $1.date })
     }
 }
