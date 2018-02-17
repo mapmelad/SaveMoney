@@ -9,14 +9,57 @@
 import UIKit
 
 extension UITextField {
+    var safeText: String {
+        return text ?? ""
+    }
+}
+
+extension UITextField {
+    
+    func updateAmountText() {
+        let currentText = safeText
+        
+        if currentText.first! == "0" {
+            self.text?.remove(at: text!.startIndex)
+        }
+        
+        if currentText.count == 2 && currentText == " ₽" {
+            text = nil
+        } else {
+            self.appendRubleSymbol()
+            self.moveCaret()
+        }
+    }
+    
+    func append(_ char: Int) {
+        self.append(String(char))
+    }
+    
+    func append(_ char: String) {
+        if !hasText {
+            self.text?.append(char)
+        } else {
+            let tidx = text!.index(text!.endIndex, offsetBy: -2)
+            self.text?.insert(Character(char), at: tidx)
+        }
+        self.moveCaret()
+    }
+    
+    func deleteChar() {
+        guard let text = text, text.count > 2 else { return }
+        
+        let idx = text.index(text.endIndex, offsetBy: -3)
+        self.text?.remove(at: idx)
+    }
+    
+    func appendRubleSymbol() {
+        guard let text = self.text else { return }
+        if text.last != "₽" { self.text?.append(" ₽") }
+    }
+    
     func moveCaret() {
         guard let newPosition = position(from: self.endOfDocument, offset: -2) else { return }
         let newRange = self.textRange(from: newPosition, to: newPosition)
         self.selectedTextRange = newRange
-    }
-
-    func appendRubleSymbol() {
-        guard let text = self.text else { return }
-        if text.last != "₽" { self.text?.append(" ₽") }
     }
 }

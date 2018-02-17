@@ -46,39 +46,11 @@ final class ViewController: UIViewController {
     
     // MARK: - Setup
     
-    private func onKeyboardTap(_ idx: Int) {
-        let s = String(idx)
-        let h = spendAmountTextField.hasText
-        
-        if !h {
-            spendAmountTextField.text?.append(s)
-        } else {
-            let text = spendAmountTextField.text!
-            let tidx = text.index(text.endIndex, offsetBy: -2)
-            spendAmountTextField.text?.insert(Character(s), at: tidx)
-        }
-        spendAmountTextField.moveCaret()
-    }
+    private func onKeyboardTap(_ idx: Int) { spendAmountTextField.append(idx) }
     
-    private func onDeleteButtonTap() {
-        guard let text = spendAmountTextField.text, text.count > 2 else { return }
-        
-        let idx = text.index(text.endIndex, offsetBy: -3)
-        spendAmountTextField.text?.remove(at: idx)
-    }
+    private func onDeleteButtonTap() { spendAmountTextField.deleteChar() }
     
-    func updateTipsTextField(_ currentText: String) {
-        if currentText.first! == "0" {
-            spendAmountTextField.text?.remove(at: spendAmountTextField.text!.startIndex)
-        }
-        
-        if currentText.count == 2 && currentText == " ₽" {
-            spendAmountTextField.text = nil
-        } else {
-            spendAmountTextField.appendRubleSymbol()
-            spendAmountTextField.moveCaret()
-        }
-    }
+    private func updateTipsTextField(_ currentText: String) {}
 }
 
 extension ViewController {
