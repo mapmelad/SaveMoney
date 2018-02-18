@@ -21,7 +21,7 @@ final class HistoryCell: UITableViewCell {
     
     var category: String = "" { didSet { categoryLabel.text = category } }
     var date: String = "" { didSet { dateLabel.text = date } }
-    var amount: Int = 0 { didSet { amountLabel.text = amount.spendAmount } }
+    var amount: Int = 0 { didSet { amountLabel.text = amount.amountFormat } }
     
     // MARK: - Overrides
     

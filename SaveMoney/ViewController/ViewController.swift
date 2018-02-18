@@ -58,11 +58,21 @@ final class ViewController: UIViewController {
     private func updateBalanceContainer() {
         updateMonthBudget()
         updateDayBudget()
+        
+        log.debug(expendAnalyser.analyse(expenseService.thisMonthSpends))
     }
     
-    private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget) ₽ на \(expenseService.daysLeftThisMonth) дней" }
+    private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget.amountFormat) на \(expenseService.daysLeftThisMonth) дней" }
     
-    private func updateDayBudget() { todayBudget.text = "\(expenseService.leftDayBudget) ₽" }
+    private func updateDayBudget() {
+        todayBudget.text = "\(expenseService.leftDayBudget) ₽"
+        if expenseService.leftDayBudget < 0 {
+            todayBudget.textColor = UIColor.red
+            errorLabel.text = "Новый бюджет на день: \(expenseService.leftMonthBudget / expenseService.daysLeftThisMonth) ₽"
+            errorLabel.isHidden = false
+        }
+        
+    }
     
     // MARK: Keyboard Container
     
@@ -75,6 +85,8 @@ final class ViewController: UIViewController {
     private let categories = ["Общее 💁‍♂️", "Транспорт 🚎", "Бары 🍻", "Кафе 🍟", "Одежда 👟", "Сотовая связь 📱", "Дом 🏡"]
     
     private let expenseService: IExpenseService = ExpenseService.shared
+    
+    private let expendAnalyser: IExpendAnalyser = ExpendAnalyser.shared
     
     // MARK: - Setup
     
@@ -116,9 +128,12 @@ private extension ViewController {
             expenseService.addExpense(spend)
             
             spendAmountTextField.text = "Потрачено " + spentText
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45, execute: { [unowned self] in
                 self.spendAmountTextField.text = " ₽"
                 self.updateBalanceContainer()
+                self.deselectCell(at: self.oldCellIndex)
+                self.oldCellIndex = IndexPath(row: -1, section: -1)
             })
         }
     }
@@ -166,6 +181,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return categories.count }
     
+    private func selectCell(at indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: oldCellIndex) as! CategoryCollectionViewCell
+        cell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
+    }
+    
+    private func deselectCell(at indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: oldCellIndex) as! CategoryCollectionViewCell
+        cell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
         
@@ -190,24 +215,5 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             
             oldCellIndex = indexPath
         }
-        
-        /* let oldCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: IndexPath(row:cellIndex, section: 0))
-         let newCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
-         
-         oldCell.bgView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
-         newCell.bgView.backgroundColor = UIColor(red:0.98, green:0.51, blue:0.12, alpha:1.0)
-         print(cellIndex, indexPath.row)
-         cellIndex = indexPath.row */
-        
     }
-}
-
-extension ObservableType {
-    
-    /**
-     Takes a sequence of optional elements and returns a sequence of non-optional elements, filtering out any nil values.
-     
-     - returns: An observable sequence of non-optional elements
-     */
-    public var ignoreNil: RxSwift.Observable<Self.E> { return flatMap { Observable.from(optional: $0) } }
 }

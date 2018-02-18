@@ -61,11 +61,12 @@ final class MockDataProvider: IDataProvider {
     
     private func mockCurrentYear() -> [Expense] {
         var spends = mockLastYearData()
+        let today = Date.today.day
         
         for monthIdx in 1...2 {
             for dayIdx in 1...31 {
                 
-                if monthIdx > 2 { break }
+                if monthIdx > 2 { fatalError() }
                 if monthIdx == 2 { if dayIdx > Date().day { break } }
                 
                 let spendsCount = Int(arc4random_uniform(3)) + 1

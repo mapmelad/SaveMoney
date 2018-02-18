@@ -13,7 +13,8 @@ final class AdviceCell: UICollectionViewCell {
 
     @IBOutlet var cardView: UIView!
     @IBOutlet var adviceLabel: UILabel!
-
+    @IBOutlet weak var titleAdviceLabel: UILabel!
+    
     // MARK: - Setters
 
     var advice: String = "" { didSet { adviceLabel.text = advice } }

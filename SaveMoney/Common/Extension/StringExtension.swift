@@ -16,6 +16,7 @@ extension String {
 
     var amount: Int? {
         let formatted = self.replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "₽", with: "")
 
         return Int(formatted)

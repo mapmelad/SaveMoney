@@ -11,5 +11,18 @@ import Foundation
 extension Int {
     var asString: String { return String(self) }
     
-    var spendAmount: String { return "\(self) ₽" }
+    var amountFormat: String {
+        let formatter = NumberFormatter()
+        let v = self as NSNumber
+        
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.alwaysShowsDecimalSeparator = false
+        formatter.generatesDecimalNumbers = false
+        formatter.maximumFractionDigits = 0
+        
+        let str = formatter.string(from: v)!
+        
+        return str.replacingOccurrences(of: ", 00", with: "")
+    }
 }
