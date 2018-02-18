@@ -10,7 +10,7 @@ import Foundation
 
 protocol IExpendAnalyser: class {
     func analyse(_ expends: [Expense]) -> (spent: Double, category: String)
-    func averagePerCategory() -> [String: Int] 
+    func averagePerCategory() -> [String: Int]
 }
 
 final class ExpendAnalyser: IExpendAnalyser {
@@ -53,6 +53,10 @@ final class ExpendAnalyser: IExpendAnalyser {
 
         return ret
     }
+
+//    func topMostSpend() -> (spent: Int, category: String) {
+//
+//    }
 
     // MARK: - Private
 

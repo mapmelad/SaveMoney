@@ -37,6 +37,7 @@
 		B995629B203844670003C71E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B995629A203844670003C71E /* StringExtension.swift */; };
 		B9A31CBD2038BF66003B0E8B /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A31CBC2038BF66003B0E8B /* DateExtension.swift */; };
 		B9A31CBF2038D7F9003B0E8B /* ExpendAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A31CBE2038D7F9003B0E8B /* ExpendAnalyser.swift */; };
+		B9A31CC12039575D003B0E8B /* ObservableTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A31CC02039575D003B0E8B /* ObservableTypeExtension.swift */; };
 		B9F352BC2038386600A1A53B /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352BB2038386600A1A53B /* HistoryController.swift */; };
 		B9F352BF20383A5700A1A53B /* RxSwiftExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */; };
 		B9F352C120383B1A00A1A53B /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C020383B1900A1A53B /* Reusable.swift */; };
@@ -82,6 +83,7 @@
 		B995629A203844670003C71E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		B9A31CBC2038BF66003B0E8B /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B9A31CBE2038D7F9003B0E8B /* ExpendAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpendAnalyser.swift; sourceTree = "<group>"; };
+		B9A31CC02039575D003B0E8B /* ObservableTypeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTypeExtension.swift; sourceTree = "<group>"; };
 		B9F352BB2038386600A1A53B /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		B9F352BE20383A5700A1A53B /* RxSwiftExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftExtension.swift; sourceTree = "<group>"; };
 		B9F352C020383B1900A1A53B /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				B96CAAA720385E5200D09D38 /* UITextFieldExtension.swift */,
 				B91DA6FD203876410088A0F7 /* ArrayExtension.swift */,
 				B95FCA4C20387AE100EDD79C /* SequenceExtension.swift */,
+				B9A31CC02039575D003B0E8B /* ObservableTypeExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -287,7 +290,7 @@
 				TargetAttributes = {
 					540F047C2037864C0045B5CC = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = W2H48J22L4;
+						DevelopmentTeam = VD97XKT54M;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -348,6 +351,7 @@
 				B96CAAA820385E5200D09D38 /* UITextFieldExtension.swift in Sources */,
 				54587B552038D24F00DD8909 /* CategoryViewController.swift in Sources */,
 				B95FCA4D20387AE100EDD79C /* SequenceExtension.swift in Sources */,
+				B9A31CC12039575D003B0E8B /* ObservableTypeExtension.swift in Sources */,
 				540F04832037864C0045B5CC /* ViewController.swift in Sources */,
 				B904318A2038B5AC00E0EA1E /* MockDataProvider.swift in Sources */,
 				5400105C2038539400525703 /* ComparableExtension.swift in Sources */,
@@ -491,7 +495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W2H48J22L4;
+				DEVELOPMENT_TEAM = VD97XKT54M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -499,7 +503,7 @@
 				INFOPLIST_FILE = SaveMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme2;
+				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -509,7 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W2H48J22L4;
+				DEVELOPMENT_TEAM = VD97XKT54M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -517,7 +521,7 @@
 				INFOPLIST_FILE = SaveMoney/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme2;
+				PRODUCT_BUNDLE_IDENTIFIER = own2pwn.hn.saveme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};

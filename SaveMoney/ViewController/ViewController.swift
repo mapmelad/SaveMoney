@@ -215,24 +215,5 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
             
             oldCellIndex = indexPath
         }
-        
-        /* let oldCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: IndexPath(row:cellIndex, section: 0))
-         let newCell: CategoryCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
-         
-         oldCell.bgView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
-         newCell.bgView.backgroundColor = UIColor(red:0.98, green:0.51, blue:0.12, alpha:1.0)
-         print(cellIndex, indexPath.row)
-         cellIndex = indexPath.row */
-        
     }
-}
-
-extension ObservableType {
-    
-    /**
-     Takes a sequence of optional elements and returns a sequence of non-optional elements, filtering out any nil values.
-     
-     - returns: An observable sequence of non-optional elements
-     */
-    public var ignoreNil: RxSwift.Observable<Self.E> { return flatMap { Observable.from(optional: $0) } }
 }

@@ -56,7 +56,7 @@ final class HistoryController: UIViewController {
         setupContainers()
     }
     
-    private func setupAdvice(){
+    private func setupAdvice() {
         advices.removeAll()
         let topSpent = expendAnalyser.analyse(expenseService.thisMonthSpends)
         let topCategory = expendAnalyser.averagePerCategory()
@@ -156,17 +156,16 @@ extension HistoryController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard : UIStoryboard = UIStoryboard(name: "Category", bundle: nil)
-        let vc : CategoryViewController = storyboard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        let storyboard: UIStoryboard = UIStoryboard(name: "Category", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
         
         let row = indexPath.row
         let section = indexPath.section
         
         let item = displayModel[section].spends[row]
-        vc.item = item
-        
+        vc.passedExpense = item
         
         let navigationController = UINavigationController(rootViewController: vc)
-        self.present(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
 }

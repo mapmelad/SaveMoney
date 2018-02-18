@@ -6,48 +6,90 @@
 //  Copyright © 2018 Semyon. All rights reserved.
 //
 
-import UIKit
-import RxSwift
 import RxCocoa
+import RxSwift
+import UIKit
 
-class CategoryViewController: UIViewController {
+final class CategoryViewController: UIViewController {
+    // MARK: - Outlets
     
-    @IBOutlet weak var allTimeSpentLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet var allTimeSpentLabel: UILabel!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var backButton: UIBarButtonItem!
+    
+    // MARK: - Member
     
     private let historyHeaderReuseId = "histHeader"
     private let historyCellReuseId = "histCell"
+    private let expenseService: IExpenseService = ExpenseService.shared
     
-    var item = Expense(id: 100500, amount: 100500, category: "123123r", date: Date())
+    var passedExpense: Expense!
+    
+    var _displayModel = [HistorySection]()
+    
+    private var datasource: [HistorySection] {
+        let allItems = expenseService.allItems
+        let category = passedExpense.category
+        let filtered = allItems.filter { $0.category == category }
+        
+        var displayModel = [HistorySection]()
+        
+        displayModel = filtered.reduce([]) { (grouped: [HistorySection], item: Expense) in
+            if let gi = grouped.first(where: { $0.header == item.header }) {
+                gi.spends.append(item)
+                
+                return grouped
+            }
+            return grouped + [HistorySection(item)]
+        }
+        
+        displayModel[0].spends.sort(by: { $0.date > $1.date })
+        
+        return displayModel
+    }
+    
+    // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupScreen()
         setapNavBar()
         bundBackButton()
-
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Methods
+    
+    private func setupScreen() {
+        updateTotalSpent()
+        _displayModel = datasource
     }
     
-    private func setapNavBar(){
-        UINavigationBar.appearance().barTintColor = UIColor(red:0.00, green:0.80, blue:0.40, alpha:1.0)
+    private func updateTotalSpent() {
+        DispatchQueue.global(qos: .default).async {
+            let allItems = self.expenseService.allItems
+            let category = self.passedExpense.category
+            let filtered = allItems.filter { $0.category == category }
+            let totalSpent = self.expenseService.totalSpent(with: filtered)
+            DispatchQueue.main.async { self.allTimeSpentLabel.text = "За всё время: " + totalSpent.amountFormat }
+        }
+    }
+    
+    // MARK: - Appereance
+    
+    private func setapNavBar() {
+        UINavigationBar.appearance().barTintColor = UIColor(red: 0.00, green: 0.80, blue: 0.40, alpha: 1.0)
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
-        self.navigationItem.title = item.category
+        navigationItem.title = passedExpense.category
     }
     
-    private func bundBackButton(){
+    private func bundBackButton() {
         backButton.rx.tap.next { [unowned self] _ in
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
 }
 
 extension CategoryViewController: UITableViewDelegate {
@@ -56,33 +98,31 @@ extension CategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: historyHeaderReuseId) as! HistorySectionHeaderCell
-        //let section = displayModel[section]
+        let item = _displayModel[section]
+        let totalSpent = expenseService.totalSpent(with: item.spends)
         
-        cell.date = "Апрель"
-        cell.totalSpentLabel.text =  "Всего 2000 ₽"
+        cell.date = month(for: item.spends[0].date.month)
+        cell.totalSpentLabel.text = totalSpent.amountFormat
         
         return cell
     }
 }
 
 extension CategoryViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int { return 5 }
+    func numberOfSections(in tableView: UITableView) -> Int { return _displayModel.count }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 10 }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return _displayModel[section].spends.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
+        
         let row = indexPath.row
         let section = indexPath.section
+        let item = _displayModel[section].spends[row]
         
-        //        let item = displayModel[section].spends[row]
-        //        let date = item.date
-        //        let min = date.minute
-        //        let humanMinute = min < 10 ? "0\(min)" : "\(min)"
-        
-        cell.category = "Транспорт 🤲"
-        cell.date = "17 января"
-        cell.amount = 1200
+        cell.category = item.category
+        cell.date = item.header
+        cell.amount = item.amount
         
         return cell
     }
