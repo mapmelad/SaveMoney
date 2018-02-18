@@ -58,8 +58,6 @@ final class ViewController: UIViewController {
     private func updateBalanceContainer() {
         updateMonthBudget()
         updateDayBudget()
-        
-        log.debug(expendAnalyser.analyse(expenseService.thisMonthSpends))
     }
     
     private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget.amountFormat) на \(expenseService.daysLeftThisMonth) дней" }
