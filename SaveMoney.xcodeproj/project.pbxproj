@@ -47,6 +47,9 @@
 		B9F352CA20383D1400A1A53B /* HistorySectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352C920383D1400A1A53B /* HistorySectionHeaderCell.swift */; };
 		B9F352CC2038428600A1A53B /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F352CB2038428600A1A53B /* IntExtension.swift */; };
 		B9F365B420381D2E00654984 /* SwifterSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F365B320381D2E00654984 /* SwifterSwift.framework */; };
+		DE24733F20398A110067FF2C /* Advice.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE24733E20398A110067FF2C /* Advice.swift */; };
+		DE24734120398A250067FF2C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE24734020398A250067FF2C /* Constants.swift */; };
+		DE24734320398A8A0067FF2C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE24734220398A8A0067FF2C /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +96,9 @@
 		B9F352C920383D1400A1A53B /* HistorySectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionHeaderCell.swift; sourceTree = "<group>"; };
 		B9F352CB2038428600A1A53B /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		B9F365B320381D2E00654984 /* SwifterSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwifterSwift.framework; path = Carthage/Build/iOS/SwifterSwift.framework; sourceTree = "<group>"; };
+		DE24733E20398A110067FF2C /* Advice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advice.swift; sourceTree = "<group>"; };
+		DE24734020398A250067FF2C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DE24734220398A8A0067FF2C /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 			children = (
 				B9F1CB1B20382AF800BC25C5 /* View */,
 				B9F352BB2038386600A1A53B /* HistoryController.swift */,
+				DE24733E20398A110067FF2C /* Advice.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -220,6 +227,7 @@
 			children = (
 				540F04802037864C0045B5CC /* AppDelegate.swift */,
 				B9F352C220383B5B00A1A53B /* Extension */,
+				DE24734020398A250067FF2C /* Constants.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 				B91DA6FD203876410088A0F7 /* ArrayExtension.swift */,
 				B95FCA4C20387AE100EDD79C /* SequenceExtension.swift */,
 				B9A31CC02039575D003B0E8B /* ObservableTypeExtension.swift */,
+				DE24734220398A8A0067FF2C /* UIColorExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -341,7 +350,9 @@
 				B9F352C120383B1A00A1A53B /* Reusable.swift in Sources */,
 				B9F352CA20383D1400A1A53B /* HistorySectionHeaderCell.swift in Sources */,
 				B9F352C420383B8000A1A53B /* AdviceCell.swift in Sources */,
+				DE24734120398A250067FF2C /* Constants.swift in Sources */,
 				B9F352C620383BD200A1A53B /* DeviceExtension.swift in Sources */,
+				DE24734320398A8A0067FF2C /* UIColorExtension.swift in Sources */,
 				B9F352C820383CEB00A1A53B /* HistoryCell.swift in Sources */,
 				B9F352BC2038386600A1A53B /* HistoryController.swift in Sources */,
 				B9F352CC2038428600A1A53B /* IntExtension.swift in Sources */,
@@ -349,6 +360,7 @@
 				B91DA6FC203875BF0088A0F7 /* ExpenseService.swift in Sources */,
 				B9A31CBF2038D7F9003B0E8B /* ExpendAnalyser.swift in Sources */,
 				B96CAAA820385E5200D09D38 /* UITextFieldExtension.swift in Sources */,
+				DE24733F20398A110067FF2C /* Advice.swift in Sources */,
 				54587B552038D24F00DD8909 /* CategoryViewController.swift in Sources */,
 				B95FCA4D20387AE100EDD79C /* SequenceExtension.swift in Sources */,
 				B9A31CC12039575D003B0E8B /* ObservableTypeExtension.swift in Sources */,

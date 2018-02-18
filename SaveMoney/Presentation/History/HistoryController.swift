@@ -11,11 +11,6 @@ import RxSwift
 import RxSwiftExt
 import UIKit
 
-struct Advice {
-    let titleAdvice: String
-    let textAdvice: String
-}
-
 final class HistoryController: UIViewController {
     // MARK: - Outlets
     
@@ -58,12 +53,14 @@ final class HistoryController: UIViewController {
     
     private func setupAdvice() {
         advices.removeAll(keepingCapacity: true)
+        
         let topSpent = expendAnalyser.analyse(expenseService.thisMonthSpends)
         let topCategory = expendAnalyser.averagePerCategory()
-        advices.append(Advice(titleAdvice: "😱😱😱", textAdvice: "Мы заметили что на \(topSpent.category) ты тратишь \(topSpent.spent + 20.47) % своего месячного бюджета. Попробуй сократить свой расход пр этой категории."))
-        advices.append(Advice(titleAdvice: "✈️⛅️🌴", textAdvice: "Впереди майские праздники. Отличный повод начать экономить сейчас, что бы как следует отдохнуть. Попробуй сократить свои расходы по категориям \(Array(topCategory.keys)[0]) и \(Array(topCategory.keys)[1])."))
-        advices.append(Advice(titleAdvice: "😠😠😠", textAdvice: "Сейчас только середина месяца, а на Бары 🍻 у тебя уже ушло 3000 ₽."))
-        advices.append(Advice(titleAdvice: "🧐🧐🧐", textAdvice: "В среднем в месяц ты тратишь 30% своего бюджета на Кафе и рестораны 🍟. Попробуй готовить дома, это классно!"))
+        
+        advices.append(Advice(titleAdvice: "😱😱😱", textAdvice: "Мы заметили что на \(topSpent.category) ты тратишь \(topSpent.spent + 20.47) % своего месячного бюджета. Попробуй сократить свой расход по этой категории.", color: CUI.Color.cardRedColor))
+        advices.append(Advice(titleAdvice: "✈️⛅️🌴", textAdvice: "Впереди майские праздники. Отличный повод начать экономить сейчас, что бы как следует отдохнуть. Попробуй сократить свои расходы по категориям \(Array(topCategory.keys)[0]) и \(Array(topCategory.keys)[1]).", color: CUI.Color.cardGreenColor))
+        advices.append(Advice(titleAdvice: "😠😠😠", textAdvice: "Сейчас только середина месяца, а на Бары 🍻 у тебя уже ушло 3000 ₽.", color: CUI.Color.cardRedColor))
+        advices.append(Advice(titleAdvice: "🧐🧐🧐", textAdvice: "В среднем в месяц ты тратишь 30% своего бюджета на Кафе и рестораны 🍟. Попробуй готовить дома, это классно!", color: CUI.Color.cardRedColor))
     }
     
     private func observeNewSpends() { NotificationCenter.default.addObserver(self, selector: #selector(onNewSpend(_:)), name: Notification.Name("shouldReloadTable"), object: nil) }
@@ -102,9 +99,12 @@ extension HistoryController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AdviceCell = collectionView.dequeueReusableCell(at: indexPath)
+        let item = advices[indexPath.row]
+        
         cell.cardView.layer.cornerRadius = 6
-        cell.titleAdviceLabel.text = advices[indexPath.row].titleAdvice
-        cell.adviceLabel.text = advices[indexPath.row].textAdvice
+        cell.titleAdviceLabel.text = item.titleAdvice
+        cell.adviceLabel.text = item.textAdvice
+        cell.cardView.backgroundColor = item.color
         
         return cell
     }
