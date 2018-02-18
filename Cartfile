@@ -1,0 +1,25 @@
+###
+### Syntax Sugar
+###
+
+github "SwifterSwift/SwifterSwift" ~> 4.0
+github "naoty/Timepiece"
+
+###
+### Reactive
+###
+
+github "ReactiveX/RxSwift" ~> 4.0
+github "RxSwiftCommunity/RxSwiftExt"
+
+###
+### Network
+###
+
+# github "khanlou/Promise"
+
+###
+### Logging
+###
+
+github "SwiftyBeaver/SwiftyBeaver"

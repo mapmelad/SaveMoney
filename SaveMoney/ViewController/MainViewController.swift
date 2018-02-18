@@ -6,43 +6,47 @@
 //  Copyright © 2018 Semyon. All rights reserved.
 //
 
+import RxCocoa
+import RxSwift
+import RxSwiftExt
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
+    // MARK: - Outlets
     
-    @IBOutlet weak var firstView: UIView!
-    @IBOutlet weak var secondView: UIView!
-    @IBOutlet weak var thirdView: UIView!
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var firstView: UIView!
+    @IBOutlet var secondView: UIView!
+    @IBOutlet var thirdView: UIView!
+    
+    @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet var scrollView: UIScrollView!
+    
+    // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Members
+    
+    // MARK: - Methods
+    
+    @IBAction func onPageControlTap(_ sender: UIPageControl) {
+        let selectedItem = sender.currentPage
     }
 }
 
 extension MainViewController: UIScrollViewDelegate {
     
-    private func updateScroll(progress: CGFloat){
-        pageControl.currentPage = Int(round(progress))
-    }
+    private func updateScroll(progress: CGFloat) { self.pageControl.currentPage = Int(round(progress)) }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView){
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let w = UIScreen.main.bounds.width
         let progress = (scrollView.contentOffset.x / w).bound(min: 0, max: 2)
+        
         updateScroll(progress: progress)
         view.endEditing(true)
     }
-    
 }
-
-

@@ -8,8 +8,10 @@
 
 import UIKit
 
-class CategoryCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var title: UILabel!
-}
+final class CategoryCollectionViewCell: UICollectionViewCell {
+    // MARK: - Outlets
 
+    @IBOutlet var title: UILabel!
+
+    @IBOutlet var bgView: UIView!
+}

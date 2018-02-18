@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.5.1",
+  "iOS" : [
+    {
+      "name" : "SwiftyBeaver",
+      "hash" : "c92280c4072d4f781ecb327f0a51be048995a3339e91bf0ee8a360b2f0976290"
+    }
+  ]
+}
