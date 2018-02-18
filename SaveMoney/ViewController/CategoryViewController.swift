@@ -35,7 +35,7 @@ final class CategoryViewController: UIViewController {
         var displayModel = [HistorySection]()
         
         displayModel = filtered.reduce([]) { (grouped: [HistorySection], item: Expense) in
-            if let gi = grouped.first(where: { $0.header == item.header }) {
+            if let gi = grouped.first(where: { $0.date.month == item.date.month && $0.date.year == item.date.year }) {
                 gi.spends.append(item)
                 
                 return grouped
@@ -115,6 +115,7 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
+        cell.selectionStyle = .none
         
         let row = indexPath.row
         let section = indexPath.section

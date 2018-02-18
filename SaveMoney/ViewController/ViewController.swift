@@ -58,8 +58,6 @@ final class ViewController: UIViewController {
     private func updateBalanceContainer() {
         updateMonthBudget()
         updateDayBudget()
-        
-        log.debug(expendAnalyser.analyse(expenseService.thisMonthSpends))
     }
     
     private func updateMonthBudget() { monthBudgetLabel.text = "\(expenseService.leftMonthBudget.amountFormat) на \(expenseService.daysLeftThisMonth) дней" }
@@ -206,6 +204,15 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath != oldCellIndex else {
+            if let oldCell = collectionView.cellForItem(at: oldCellIndex) as? CategoryCollectionViewCell {
+                oldCell.bgView.backgroundColor = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
+            }
+            oldCellIndex = IndexPath(row: -1, section: -1)
+            
+            return
+        }
+        
         if let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell {
             selectedCell.bgView.backgroundColor = UIColor(red: 0.98, green: 0.51, blue: 0.12, alpha: 1.0)
             

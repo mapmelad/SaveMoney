@@ -12,12 +12,12 @@ import RxSwiftExt
 import UIKit
 
 final class MainViewController: UIViewController {
-    
     // MARK: - Outlets
     
     @IBOutlet var firstView: UIView!
     @IBOutlet var secondView: UIView!
     @IBOutlet var thirdView: UIView!
+    
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var scrollView: UIScrollView!
     
@@ -32,6 +32,10 @@ final class MainViewController: UIViewController {
     // MARK: - Members
     
     // MARK: - Methods
+    
+    @IBAction func onPageControlTap(_ sender: UIPageControl) {
+        let selectedItem = sender.currentPage
+    }
 }
 
 extension MainViewController: UIScrollViewDelegate {
