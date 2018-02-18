@@ -60,8 +60,10 @@ final class HistoryController: UIViewController {
         advices.removeAll()
         let topSpent = expendAnalyser.analyse(expenseService.thisMonthSpends)
         let topCategory = expendAnalyser.averagePerCategory()
-        advices.append(Advice(titleAdvice: "😱😱😱", textAdvice: "Мы заметили что на \(topSpent.category) ты тратишь \(topSpent.spent) % своего месячного бюджета. Попробуй сократить свой рассход."))
-        advices.append(Advice(titleAdvice: "✈️⛅️🌴", textAdvice: "Впереди майские праздники. Отличный повод начать экономить сейчас, как следует отдохнуть. Попробуй сократить свои расходы по категориям \(Array(topCategory.keys)[0]) и \(Array(topCategory.keys)[1])."))
+        advices.append(Advice(titleAdvice: "😱😱😱", textAdvice: "Мы заметили что на \(topSpent.category) ты тратишь \(topSpent.spent) % своего месячного бюджета. Попробуй сократить свой рассход пр этой категории."))
+        advices.append(Advice(titleAdvice: "✈️⛅️🌴", textAdvice: "Впереди майские праздники. Отличный повод начать экономить сейчас, что бы как следует отдохнуть. Попробуй сократить свои расходы по категориям \(Array(topCategory.keys)[0]) и \(Array(topCategory.keys)[1])."))
+        advices.append(Advice(titleAdvice: "😠😠😠", textAdvice: "Сейчас только середина месяца, а на Бары 🍻 у тебя уже ушло 3000 ₽."))
+        advices.append(Advice(titleAdvice: "🧐🧐🧐", textAdvice: "В среднем в месяц ты тратишь 30% своего бюджета на Кафе и рестораны 🍟. Попробуй готовить дома, это классно!"))
     }
     
     private func observeNewSpends() { NotificationCenter.default.addObserver(self, selector: #selector(onNewSpend(_:)), name: Notification.Name("shouldReloadTable"), object: nil) }
