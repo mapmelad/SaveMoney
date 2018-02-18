@@ -402,7 +402,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZvZ-ii-WJq">
                                                 <rect key="frame" x="749.5" y="0.0" width="375.5" height="642"/>
                                                 <subviews>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-ik-svm">
+                                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-ik-svm">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="642"/>
                                                         <connections>
                                                             <segue destination="h8q-rT-37e" kind="embed" id="6BH-dN-aKK"/>
@@ -437,6 +437,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="enS-ab-tno"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="onPageControlTap:" destination="9oR-Tz-EG1" eventType="valueChanged" id="xYE-iP-aWJ"/>
+                                </connections>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

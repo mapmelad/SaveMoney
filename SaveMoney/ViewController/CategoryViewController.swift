@@ -115,6 +115,7 @@ extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryCell = tableView.dequeueReusableCell(at: indexPath)
+        cell.selectionStyle = .none
         
         let row = indexPath.row
         let section = indexPath.section

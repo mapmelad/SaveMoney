@@ -132,7 +132,6 @@ extension HistoryController: UITableViewDelegate {
         
         return cell
     }
-    
 }
 
 extension HistoryController: UITableViewDataSource {
@@ -158,6 +157,8 @@ extension HistoryController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row >= 0 else { return }
+        
         let storyboard: UIStoryboard = UIStoryboard(name: "Category", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
         
@@ -169,5 +170,6 @@ extension HistoryController: UITableViewDataSource {
         
         let navigationController = UINavigationController(rootViewController: vc)
         present(navigationController, animated: true, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
